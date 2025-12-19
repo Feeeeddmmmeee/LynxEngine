@@ -10,8 +10,8 @@ namespace Lynx
 		std::cout<<"Initializing "<<this->name<<"..."<<std::endl;
 
 		SDL_Init(SDL_INIT_VIDEO);
-		SDL_Window* window = SDL_CreateWindow(this->name.c_str(), this->windowWidth, this->windowHeight, SDL_WINDOW_RESIZABLE);
-		SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
+		SDL_Window *window = SDL_CreateWindow(this->name.c_str(), this->windowWidth, this->windowHeight, SDL_WINDOW_RESIZABLE);
+		SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
 		while(this->isRunning())
 		{
 			SDL_RenderClear(renderer);
@@ -20,6 +20,8 @@ namespace Lynx
 			this->close();
 		}
 
+		SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(window);
 		SDL_Quit();
 		std::cout<<"Closing "<<this->name<<"..."<<std::endl;
 	}
