@@ -15,6 +15,7 @@ namespace Lynx
 		while(this->isRunning())
 		{
 			SDL_RenderClear(renderer);
+			this->layerManager.update();
 			SDL_RenderPresent(renderer);
 			SDL_Delay(5000);
 			this->close();

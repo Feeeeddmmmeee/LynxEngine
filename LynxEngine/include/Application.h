@@ -1,6 +1,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "LayerManager.h"
+
 #include <string>
 
 namespace Lynx
@@ -14,6 +16,8 @@ namespace Lynx
 			void run();
 			void close();
 			bool isRunning();
+
+			LayerManager layerManager;
 
 		private:
 			std::string name;

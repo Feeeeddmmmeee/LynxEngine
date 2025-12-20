@@ -1,6 +1,8 @@
 #ifndef LAYER_H
 #define LAYER_H
 
+#include <memory>
+
 namespace Lynx
 {
 	class Layer
@@ -8,12 +10,18 @@ namespace Lynx
 		public:
 			virtual ~Layer() = default;
 
-			virtual void onUpdate() {};
-			virtual void onRender() {};
+			virtual void update() {};
+			virtual void render() {};
 
-			void queueTransition(Layer *layer);
+			template<typename TLayer>
+			void queueTransition()
+			{
+				this->nextLayer = std::move(std::make_unique<TLayer>());
+			}
 
 		private:
+			friend class LayerManager;
+			std::unique_ptr<Layer> nextLayer = nullptr;
 	};
 }
 
