@@ -37,7 +37,7 @@ namespace Lynx
 		return this->running;
 	}
 
-	Application::Application(std::string name, int windowWidth, int windowHeight)
+	Application::Application(std::string name, unsigned int windowWidth, unsigned int windowHeight)
 	{
 		this->name = name;
 		this->windowWidth = windowWidth;

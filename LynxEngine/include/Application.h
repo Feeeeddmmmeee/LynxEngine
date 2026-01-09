@@ -10,7 +10,7 @@ namespace Lynx
 	class Application
 	{
 		public:
-			Application(std::string name, int windowWidth, int windowHeight);
+			Application(std::string name, unsigned int windowWidth, unsigned int windowHeight);
 			~Application();
 
 			void run();
@@ -21,7 +21,7 @@ namespace Lynx
 
 		private:
 			std::string name;
-			int windowWidth, windowHeight;
+			unsigned int windowWidth, windowHeight;
 			bool running = 0;
 	};
 }
