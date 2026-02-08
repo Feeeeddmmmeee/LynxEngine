@@ -4,6 +4,7 @@
 #include "Logging.h"
 
 #include <memory>
+#include <utility>
 #include <vector>
 #include <queue>
 #include <functional>
@@ -13,10 +14,10 @@ namespace Lynx
 	class LayerManager
 	{
 		public:
-			template<typename TLayer>
-			void pushLayer()
+			template<typename TLayer, typename... Args>
+			void pushLayer(Args&&... args)
 			{
-				auto layer = new TLayer;
+				auto layer = new TLayer(std::forward<Args>(args)...);
 				layer->init(this);
 
 				updateQueue.push([this, layer]() {
