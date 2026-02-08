@@ -1,10 +1,10 @@
-#ifndef LAYER_H
-#define LAYER_H
+#pragma once
 
 #include <memory>
 
 namespace Lynx
 {
+	class LayerManager;
 	class Layer
 	{
 		public:
@@ -16,13 +16,16 @@ namespace Lynx
 			template<typename TLayer>
 			void queueTransition()
 			{
-				this->nextLayer = std::move(std::make_unique<TLayer>());
+				//TODO
 			}
+
+		protected:
+			inline LayerManager* getManager() const { return this->layerManager; };
 
 		private:
 			friend class LayerManager;
-			std::unique_ptr<Layer> nextLayer = nullptr;
+			LayerManager *layerManager;
+
+			void init(LayerManager *manager);
 	};
 }
-
-#endif

@@ -12,13 +12,14 @@ namespace Lynx
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_Window *window = SDL_CreateWindow(this->name.c_str(), this->windowWidth, this->windowHeight, SDL_WINDOW_RESIZABLE);
 		SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
-		while(this->isRunning())
+
+		int i = 0;
+		while(this->isRunning() && i < 50000)
 		{
 			SDL_RenderClear(renderer);
-			this->layerManager.update();
+			this->updateLayers();
 			SDL_RenderPresent(renderer);
-			SDL_Delay(5000);
-			this->close();
+			++i;
 		}
 
 		SDL_DestroyRenderer(renderer);

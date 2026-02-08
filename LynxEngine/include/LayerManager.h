@@ -1,5 +1,4 @@
-#ifndef LAYER_MANAGER_H
-#define LAYER_MANAGER_H
+#pragma once
 
 #include "Layer.h"
 
@@ -11,12 +10,12 @@ namespace Lynx
 	class LayerManager
 	{
 		public:
-			void update();
-
 			template<typename TLayer>
 			void pushLayer()
 			{
-				this->layers.push_back(std::make_unique<TLayer>());
+				auto layer = std::make_unique<TLayer>();
+				layer->init(this);
+				this->layers.push_back(std::move(layer));
 			}
 
 			template<typename TLayer>
@@ -33,18 +32,14 @@ namespace Lynx
 			template<typename TLayer>
 			void removeLayer()
 			{
-				for(int i = 0; i < this->layers.size(); ++i)
-				{
-					if(auto casted = dynamic_cast<TLayer*>(this->layers[i].get()))
-					{
-						break;
-					}
-				}
+				// TODO
 			}
+
+		protected:
+			void updateLayers();
+			void processLayerEvents();
 
 		private:
 			std::vector<std::unique_ptr<Layer>> layers;
 	};
 }
-
-#endif

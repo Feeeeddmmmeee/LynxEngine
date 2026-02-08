@@ -1,5 +1,4 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#pragma once
 
 #include "LayerManager.h"
 
@@ -7,7 +6,7 @@
 
 namespace Lynx
 {
-	class Application
+	class Application : public LayerManager
 	{
 		public:
 			Application(std::string name, unsigned int windowWidth, unsigned int windowHeight);
@@ -17,13 +16,11 @@ namespace Lynx
 			void close();
 			bool isRunning();
 
-			LayerManager layerManager;
-
 		private:
+			bool running = 0;
+
+			// Temporary
 			std::string name;
 			unsigned int windowWidth, windowHeight;
-			bool running = 0;
 	};
 }
-
-#endif

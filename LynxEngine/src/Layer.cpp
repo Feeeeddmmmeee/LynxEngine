@@ -2,4 +2,8 @@
 
 namespace Lynx
 {
+	void Layer::init(LayerManager *manager)
+	{
+		this->layerManager = manager;
+	}
 }
