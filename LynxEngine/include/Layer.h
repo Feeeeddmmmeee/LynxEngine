@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 namespace Lynx
 {
 	class LayerManager;
@@ -10,8 +8,9 @@ namespace Lynx
 		public:
 			virtual ~Layer() = default;
 
-			virtual void update() {};
-			virtual void render() {};
+			virtual void onAttach() {};
+			virtual void onUpdate() {};
+			virtual void onDetach() {};
 
 			template<typename TLayer>
 			void queueTransition()

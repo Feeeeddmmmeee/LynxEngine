@@ -1,9 +1,12 @@
 #pragma once
 
 #include "Layer.h"
+#include "Logging.h"
 
 #include <memory>
 #include <vector>
+#include <queue>
+#include <functional>
 
 namespace Lynx
 {
@@ -13,9 +16,14 @@ namespace Lynx
 			template<typename TLayer>
 			void pushLayer()
 			{
-				auto layer = std::make_unique<TLayer>();
+				auto layer = new TLayer;
 				layer->init(this);
-				this->layers.push_back(std::move(layer));
+
+				updateQueue.push([this, layer]() {
+					LOG("PUSH")
+					this->layers.push_back(std::move(std::unique_ptr<Layer>(layer)));
+					layer->onAttach();
+				});
 			}
 
 			template<typename TLayer>
@@ -32,14 +40,28 @@ namespace Lynx
 			template<typename TLayer>
 			void removeLayer()
 			{
-				// TODO
+				updateQueue.push([this]() {
+					LOG("REMOVE")
+					for(auto it = this->layers.begin(); it != this->layers.end(); ++it)
+					{
+						if(dynamic_cast<TLayer*>(it->get()))
+						{
+							LOG("	FOUND!")
+							it->get()->onDetach();
+							this->layers.erase(it);
+							return;
+						}
+					}
+				});
 			}
 
 		protected:
 			void updateLayers();
-			void processLayerEvents();
 
 		private:
 			std::vector<std::unique_ptr<Layer>> layers;
+			std::queue<std::function<void()>> updateQueue;
+
+			void processOperations();
 	};
 }

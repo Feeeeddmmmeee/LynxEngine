@@ -4,19 +4,20 @@ namespace Lynx
 {
 	void LayerManager::updateLayers()
 	{
+		this->processOperations();
 		for(auto &layer : this->layers)
 		{
-			layer->update();
-		}
-
-		for(auto &layer : this->layers)
-		{
-			layer->render();
+			layer->onUpdate();
 		}
 	}
 
-	void LayerManager::processLayerEvents()
+	void LayerManager::processOperations()
 	{
-
+		while(!this->updateQueue.empty())
+		{
+			auto &op = this->updateQueue.front();
+			op();
+			this->updateQueue.pop();
+		}
 	}
 }
