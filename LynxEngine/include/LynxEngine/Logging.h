@@ -40,6 +40,7 @@ namespace Lynx
 	};
 }
 
+// TODO: separate settings for client/engine logging?
 #if LYNX_LOG_LEVEL <= LOG_LEVEL_DEBUG
 	#define LYNX_DEBUG(...) Lynx::Logger::getClientLogger()->debug(__VA_ARGS__)
 	#define LYNX_ENGINE_DEBUG(...) Lynx::Logger::getEngineLogger()->debug(__VA_ARGS__)

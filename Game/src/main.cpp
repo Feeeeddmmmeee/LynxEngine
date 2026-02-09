@@ -1,6 +1,4 @@
-#include "Application.h"
-#include "Layer.h"
-#include "Logging.h"
+#include <LynxEngine.h>
 
 class GameLayer : public Lynx::Layer
 {

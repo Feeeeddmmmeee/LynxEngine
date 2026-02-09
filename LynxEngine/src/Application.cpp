@@ -1,6 +1,4 @@
-#include "Application.h"
-#include "Logging.h"
-#include <iostream>
+#include "LynxEngine/Application.h"
 #include <SDL3/SDL.h>
 
 namespace Lynx

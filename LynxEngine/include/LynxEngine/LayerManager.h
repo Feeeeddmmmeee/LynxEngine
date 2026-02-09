@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Layer.h"
-#include "Logging.h"
+#include "LynxEngine/Layer.h"
+#include "LynxEngine/Logging.h"
 
 #include <memory>
 #include <utility>
