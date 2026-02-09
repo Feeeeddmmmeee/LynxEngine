@@ -21,7 +21,7 @@ namespace Lynx
 				layer->init(this);
 
 				updateQueue.push([this, layer]() {
-					LOG("PUSH")
+					LYNX_ENGINE_DEBUG("PUSH");
 					this->layers.push_back(std::move(std::unique_ptr<Layer>(layer)));
 					layer->onAttach();
 				});
@@ -42,12 +42,12 @@ namespace Lynx
 			void removeLayer()
 			{
 				updateQueue.push([this]() {
-					LOG("REMOVE")
+					LYNX_ENGINE_DEBUG("REMOVE");
 					for(auto it = this->layers.begin(); it != this->layers.end(); ++it)
 					{
 						if(dynamic_cast<TLayer*>(it->get()))
 						{
-							LOG("	FOUND!")
+							LYNX_ENGINE_DEBUG("	FOUND!");
 							it->get()->onDetach();
 							this->layers.erase(it);
 							return;

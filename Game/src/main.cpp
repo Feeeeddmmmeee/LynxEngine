@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Layer.h"
+#include "Logging.h"
 
 class GameLayer : public Lynx::Layer
 {
@@ -11,7 +12,7 @@ class GameLayer : public Lynx::Layer
 		}
 		void onAttach() override
 		{
-			LOG("Game layer attached... ("<<this->name<<")")
+			LYNX_ENGINE_DEBUG("Game layer attached... ({})",this->name);
 		}
 };
 
@@ -20,7 +21,7 @@ class TestLayer : public Lynx::Layer
 	public:
 		void onDetach() override
 		{
-			LOG("Test layer detached...")
+			LYNX_ENGINE_DEBUG("Test layer detached...");
 			this->getManager()->pushLayer<GameLayer>("TEST");
 		}
 };
