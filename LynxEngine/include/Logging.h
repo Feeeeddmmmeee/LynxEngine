@@ -4,6 +4,16 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <memory>
 
+#define LOG_LEVEL_DEBUG 0
+#define LOG_LEVEL_INFO 1
+#define LOG_LEVEL_WARN 2
+#define LOG_LEVEL_ERROR 3
+#define LOG_LEVEL_NONE 4
+
+#ifndef LYNX_LOG_LEVEL
+	#define LYNX_LOG_LEVEL LOG_LEVEL_INFO
+#endif
+
 namespace Lynx
 {
 	class Logger {
@@ -30,25 +40,34 @@ namespace Lynx
 	};
 }
 
-// TODO: being able to disable individual log levels
-#ifndef LYNX_STRIP_LOGS
-	#define LYNX_ERROR(...) Lynx::Logger::getClientLogger()->error(__VA_ARGS__)
-	#define LYNX_WARN(...)  Lynx::Logger::getClientLogger()->warn(__VA_ARGS__)
-	#define LYNX_INFO(...)  Lynx::Logger::getClientLogger()->info(__VA_ARGS__)
+#if LYNX_LOG_LEVEL <= LOG_LEVEL_DEBUG
 	#define LYNX_DEBUG(...) Lynx::Logger::getClientLogger()->debug(__VA_ARGS__)
-
-	#define LYNX_ENGINE_ERROR(...) Lynx::Logger::getEngineLogger()->error(__VA_ARGS__)
-	#define LYNX_ENGINE_WARN(...)  Lynx::Logger::getEngineLogger()->warn(__VA_ARGS__)
-	#define LYNX_ENGINE_INFO(...)  Lynx::Logger::getEngineLogger()->info(__VA_ARGS__)
 	#define LYNX_ENGINE_DEBUG(...) Lynx::Logger::getEngineLogger()->debug(__VA_ARGS__)
 #else
-	#define LYNX_ERROR(...)
-	#define LYNX_WARN(...)
-	#define LYNX_INFO(...)
 	#define LYNX_DEBUG(...)
-
-	#define LYNX_ENGINE_ERROR(...)
-	#define LYNX_ENGINE_WARN(...)
-	#define LYNX_ENGINE_INFO(...)
 	#define LYNX_ENGINE_DEBUG(...)
+#endif
+
+#if LYNX_LOG_LEVEL <= LOG_LEVEL_INFO
+	#define LYNX_INFO(...)  Lynx::Logger::getClientLogger()->info(__VA_ARGS__)
+	#define LYNX_ENGINE_INFO(...)  Lynx::Logger::getEngineLogger()->info(__VA_ARGS__)
+#else
+	#define LYNX_INFO(...)
+	#define LYNX_ENGINE_INFO(...)
+#endif
+
+#if LYNX_LOG_LEVEL <= LOG_LEVEL_WARN
+	#define LYNX_WARN(...)  Lynx::Logger::getClientLogger()->warn(__VA_ARGS__)
+	#define LYNX_ENGINE_WARN(...)  Lynx::Logger::getEngineLogger()->warn(__VA_ARGS__)
+#else
+	#define LYNX_WARN(...)
+	#define LYNX_ENGINE_WARN(...)
+#endif
+
+#if LYNX_LOG_LEVEL <= LOG_LEVEL_ERROR
+	#define LYNX_ERROR(...) Lynx::Logger::getClientLogger()->error(__VA_ARGS__)
+	#define LYNX_ENGINE_ERROR(...) Lynx::Logger::getEngineLogger()->error(__VA_ARGS__)
+#else
+	#define LYNX_ERROR(...)
+	#define LYNX_ENGINE_ERROR(...)
 #endif
