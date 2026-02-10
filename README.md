@@ -3,6 +3,7 @@ A simple 2D C++ game engine
 ## :sparkles: Features
 - [x]  Layer system
 - [x]  Macro based logging
+- [ ]  Event system
 - [ ]  ECS
 - [ ]  Rendering
 - [ ]  Resource management
