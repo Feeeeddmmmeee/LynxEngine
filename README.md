@@ -1,6 +1,6 @@
 # Lynx Engine
 A simple 2D C++ game engine
-## Features
+## :sparkles: Features
 - [x]  Layer system
 - [x]  Macro based logging
 - [ ]  ECS
@@ -8,7 +8,7 @@ A simple 2D C++ game engine
 - [ ]  Resource management
 - [ ]  Audio support
 
-## Getting started
+## :rocket: Getting started
 ```cpp
 #include <LynxEngine.h>
 
@@ -28,7 +28,7 @@ int main()
 }
 ```
 
-## Dependencies
+## :package: Dependencies
 - spdlog
 - glm
 
