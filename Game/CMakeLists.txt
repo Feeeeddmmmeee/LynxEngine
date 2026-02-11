@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(Game)
-find_package(spdlog REQUIRED)
-find_package(glm REQUIRED)
-find_package(SDL3 REQUIRED)
 
 # LSP support
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

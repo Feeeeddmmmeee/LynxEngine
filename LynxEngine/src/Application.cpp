@@ -1,4 +1,6 @@
 #include "LynxEngine/Application.h"
+#include "LynxEngine/Logging.h"
+
 #include <SDL3/SDL.h>
 
 namespace Lynx
@@ -13,7 +15,7 @@ namespace Lynx
 		// SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
 		//
 		int i = 0;
-		while(this->isRunning() && i < 50000)
+		while(this->isRunning() && i < 5000000)
 		{
 		// 	SDL_RenderClear(renderer);
 			this->updateLayers();

@@ -1,36 +1,39 @@
 #include <LynxEngine.h>
 
-class GameLayer : public Lynx::Layer
+class TestLayer;
+
+class NamedLayer : public Lynx::Layer
 {
 	public:
 		std::string name;
-		GameLayer(std::string n)
-		{
-			this->name=n;
-		}
+		NamedLayer(std::string n) : name(n) {}
+		NamedLayer() : name("NamedLayer"){}
 		void onAttach() override
 		{
-			LYNX_ENGINE_DEBUG("Game layer attached... ({})",this->name);
+			LYNX_ENGINE_DEBUG("Named layer {} attached... ",this->name);
 		}
 };
 
 class TestLayer : public Lynx::Layer
 {
 	public:
+		void onAttach() override
+		{
+			LYNX_ENGINE_DEBUG("Test layer attached...");
+		}
 		void onDetach() override
 		{
 			LYNX_ENGINE_DEBUG("Test layer detached...");
-			this->getManager()->pushLayer<GameLayer>("TEST");
 		}
 };
 
 int main()
 {
 	Lynx::Application game = Lynx::Application("Example", 640, 480);
-	game.pushLayer<GameLayer>("First");
+	game.pushLayer<NamedLayer>("First");
 	game.pushLayer<TestLayer>();
-	game.removeLayer<GameLayer>();
-	game.removeLayer<TestLayer>();
-	game.removeLayer<TestLayer>();
+	game.removeLayer<NamedLayer>();
+	game.swapLayer<TestLayer, NamedLayer>("Second");
+	game.swapLayer<TestLayer, NamedLayer>("Second");
 	game.run();
 }

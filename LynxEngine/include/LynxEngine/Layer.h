@@ -12,12 +12,6 @@ namespace Lynx
 			virtual void onUpdate() {};
 			virtual void onDetach() {};
 
-			template<typename TLayer>
-			void queueTransition()
-			{
-				//TODO
-			}
-
 		protected:
 			inline LayerManager* getManager() const { return this->layerManager; };
 
