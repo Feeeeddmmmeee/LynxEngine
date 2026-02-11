@@ -34,6 +34,6 @@ int main()
 	game.pushLayer<TestLayer>();
 	game.removeLayer<NamedLayer>();
 	game.swapLayer<TestLayer, NamedLayer>("Second");
-	game.swapLayer<TestLayer, NamedLayer>("Second");
+	game.swapLayer<TestLayer, NamedLayer>();
 	game.run();
 }

@@ -26,6 +26,7 @@ int main()
 {
   auto app = Lynx::Application();
   app.pushLayer<MyLayer>();
+  app.run();
 }
 ```
 
