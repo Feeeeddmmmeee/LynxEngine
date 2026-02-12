@@ -10,7 +10,7 @@ class NamedLayer : public Lynx::Layer
 		NamedLayer() : name("NamedLayer"){}
 		void onAttach() override
 		{
-			LYNX_ENGINE_DEBUG("Named layer {} attached... ",this->name);
+			LYNX_DEBUG("Named layer {} attached... ",this->name);
 		}
 };
 
@@ -19,11 +19,11 @@ class TestLayer : public Lynx::Layer
 	public:
 		void onAttach() override
 		{
-			LYNX_ENGINE_DEBUG("Test layer attached...");
+			LYNX_DEBUG("Test layer attached...");
 		}
 		void onDetach() override
 		{
-			LYNX_ENGINE_DEBUG("Test layer detached...");
+			LYNX_DEBUG("Test layer detached...");
 		}
 };
 

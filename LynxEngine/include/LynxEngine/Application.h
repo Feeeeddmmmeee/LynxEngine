@@ -14,7 +14,7 @@ namespace Lynx
 
 			void run();
 			void close();
-			bool isRunning();
+			bool isRunning() { return this->running; };
 
 		private:
 			bool running = 0;

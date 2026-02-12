@@ -34,11 +34,6 @@ namespace Lynx
 		this->running = 0;
 	}
 
-	bool Application::isRunning()
-	{
-		return this->running;
-	}
-
 	Application::Application(std::string name, unsigned int windowWidth, unsigned int windowHeight)
 	{
 		this->name = name;
