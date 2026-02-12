@@ -1,7 +1,5 @@
 #include <LynxEngine.h>
 
-class TestLayer;
-
 class NamedLayer : public Lynx::Layer
 {
 	public:
@@ -11,6 +9,10 @@ class NamedLayer : public Lynx::Layer
 		void onAttach() override
 		{
 			LYNX_DEBUG("Named layer {} attached... ",this->name);
+		}
+		void onEvent(Lynx::Event *event) override
+		{
+			LYNX_WARN("Event handled by {}", this->name);
 		}
 };
 
@@ -25,6 +27,11 @@ class TestLayer : public Lynx::Layer
 		{
 			LYNX_DEBUG("Test layer detached...");
 		}
+		void onEvent(Lynx::Event *event) override
+		{
+			LYNX_WARN("Event handled by Test, {}", event->handled);
+			event->handled = 1;
+		}
 };
 
 int main()
@@ -35,5 +42,6 @@ int main()
 	game.removeLayer<NamedLayer>();
 	game.swapLayer<TestLayer, NamedLayer>("Second");
 	game.swapLayer<TestLayer, NamedLayer>();
+	game.pushLayer<TestLayer>();
 	game.run();
 }

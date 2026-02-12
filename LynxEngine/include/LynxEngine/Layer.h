@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LynxEngine/Events/Event.h"
+
 namespace Lynx
 {
 	class LayerManager;
@@ -10,6 +12,7 @@ namespace Lynx
 
 			virtual void onAttach() {};
 			virtual void onUpdate() {};
+			virtual void onEvent(Lynx::Event *event) {};
 			virtual void onDetach() {};
 
 		protected:

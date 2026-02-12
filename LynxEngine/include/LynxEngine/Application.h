@@ -13,11 +13,16 @@ namespace Lynx
 			~Application();
 
 			void run();
+			void queueEvent(Lynx::Event *event);
+
 			void close();
 			bool isRunning() { return this->running; };
 
 		private:
 			bool running = 0;
+			std::queue<Lynx::Event*> eventQueue;
+
+			void handleEvents();
 
 			// Temporary
 			std::string name;

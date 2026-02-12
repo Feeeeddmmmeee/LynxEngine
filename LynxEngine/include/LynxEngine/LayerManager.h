@@ -79,9 +79,9 @@ namespace Lynx
 
 		protected:
 			void updateLayers();
+			std::vector<std::unique_ptr<Layer>> layers;
 
 		private:
-			std::vector<std::unique_ptr<Layer>> layers;
 			std::queue<std::function<void()>> updateQueue;
 
 			void processOperations();

@@ -1,32 +1,44 @@
 #include "LynxEngine/Application.h"
 #include "LynxEngine/Logging.h"
 
-#include <SDL3/SDL.h>
-
 namespace Lynx
 {
 	void Application::run()
 	{
-		// TEMPORARY!!! Just to have a something to test other systems
 		LYNX_ENGINE_DEBUG("Initializing {}...", this->name);
+		queueEvent(new Lynx::Event());
 
-		// SDL_Init(SDL_INIT_VIDEO);
-		// SDL_Window *window = SDL_CreateWindow(this->name.c_str(), this->windowWidth, this->windowHeight, SDL_WINDOW_RESIZABLE);
-		// SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
-		//
+		// temporary to stop infinite loops
 		int i = 0;
 		while(this->isRunning() && i < 5000000)
 		{
-		// 	SDL_RenderClear(renderer);
 			this->updateLayers();
-		// 	SDL_RenderPresent(renderer);
+			this->handleEvents();
 			++i;
 		}
-		//
-		// SDL_DestroyRenderer(renderer);
-		// SDL_DestroyWindow(window);
-		// SDL_Quit();
+
 		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
+	}
+
+	void Application::queueEvent(Lynx::Event *event)
+	{
+		this->eventQueue.push(event);
+	}
+
+	void Application::handleEvents()
+	{
+		while(!this->eventQueue.empty())
+		{
+			auto e = this->eventQueue.front();
+			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(e).name());
+			for(auto it = this->layers.end(); it != this->layers.begin();)
+			{
+				(*--it)->onEvent(e);
+				if(e->handled) break;
+			}
+			delete e;
+			this->eventQueue.pop();
+		}
 	}
 
 	void Application::close()
