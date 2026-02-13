@@ -6,7 +6,6 @@ namespace Lynx
 	void Application::run()
 	{
 		LYNX_ENGINE_DEBUG("Initializing {}...", this->name);
-		queueEvent(new Lynx::Event());
 
 		// temporary to stop infinite loops
 		int i = 0;

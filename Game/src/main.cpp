@@ -1,4 +1,5 @@
 #include <LynxEngine.h>
+#include <LynxEngine/Events/EventDispatcher.h>
 
 class NamedLayer : public Lynx::Layer
 {
@@ -13,6 +14,7 @@ class NamedLayer : public Lynx::Layer
 		void onEvent(Lynx::Event *event) override
 		{
 			LYNX_WARN("Event handled by {}", this->name);
+			Lynx::EventDispatcher d(event);
 		}
 };
 
@@ -30,18 +32,13 @@ class TestLayer : public Lynx::Layer
 		void onEvent(Lynx::Event *event) override
 		{
 			LYNX_WARN("Event handled by Test, {}", event->handled);
-			event->handled = 1;
 		}
 };
 
 int main()
 {
 	Lynx::Application game = Lynx::Application("Example", 640, 480);
-	game.pushLayer<NamedLayer>("First");
 	game.pushLayer<TestLayer>();
-	game.removeLayer<NamedLayer>();
-	game.swapLayer<TestLayer, NamedLayer>("Second");
-	game.swapLayer<TestLayer, NamedLayer>();
-	game.pushLayer<TestLayer>();
+	game.pushLayer<NamedLayer>();
 	game.run();
 }
