@@ -29,7 +29,7 @@ namespace Lynx
 			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(event).name());
 
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
-			dispatcher.dispatch<WindowClose>([this](Lynx::Event*){ this->close(); return 1; });
+			dispatcher.dispatch<WindowCloseEvent>([this](Lynx::Event*){ this->close(); return 1; });
 
 			this->layerStack.handleEvent(event);
 			delete event;

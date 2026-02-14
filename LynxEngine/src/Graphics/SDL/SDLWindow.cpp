@@ -23,7 +23,7 @@ namespace Lynx
 		this->pollSDLEvents();
 	}
 
-	void SDLWindow::setEventCallback(std::function<void(Lynx::Event*)> callback)
+	void SDLWindow::setEventCallback(std::function<void(Event*)> callback)
 	{
 		this->eventCallback = callback;
 	}
@@ -36,7 +36,13 @@ namespace Lynx
 			switch(e.type)
 			{
 				case SDL_EVENT_QUIT:
-					this->eventCallback(new WindowClose());
+					this->eventCallback(new WindowCloseEvent());
+					break;
+				case SDL_EVENT_WINDOW_RESIZED:
+					this->eventCallback(new WindowResizeEvent(e.window.data1, e.window.data2));
+					break;
+				case SDL_EVENT_WINDOW_MOVED:
+					this->eventCallback(new WindowMoveEvent(e.window.data1, e.window.data2));
 					break;
 				default:
 					break;
@@ -59,7 +65,7 @@ namespace Lynx
 		}
 
 		LYNX_ENGINE_DEBUG("Creating SDL Window...");
-		this->window = SDL_CreateWindow(title.c_str(), width, height, 0);
+		this->window = SDL_CreateWindow(title.c_str(), width, height, SDL_WINDOW_RESIZABLE);
 		if(this->window == NULL) LYNX_ENGINE_ERROR("Failed to create SDL Window!");
 
 		// TEMPORARY !!!
