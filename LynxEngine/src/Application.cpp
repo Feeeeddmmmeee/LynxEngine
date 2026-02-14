@@ -1,5 +1,6 @@
 #include "LynxEngine/Application.h"
 #include "LynxEngine/Events/EventDispatcher.h"
+#include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Logging.h"
 
 namespace Lynx
@@ -28,6 +29,7 @@ namespace Lynx
 			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(event).name());
 
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
+			dispatcher.dispatch<WindowClose>([this](Lynx::Event*){ this->close(); return 1; });
 
 			this->layerStack.handleEvent(event);
 			delete event;

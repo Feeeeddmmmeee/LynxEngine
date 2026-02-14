@@ -25,8 +25,8 @@ namespace Lynx
 	{
 		for(auto it = this->layers.end(); it != this->layers.begin();)
 		{
-			(*--it)->onEvent(event);
 			if(event->handled) break;
+			(*--it)->onEvent(event);
 		}
 	}
 }

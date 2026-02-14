@@ -7,6 +7,8 @@
 namespace Lynx
 {
 	enum class EventType {
+		None=0,
+		WindowClose
 	};
 
 	class Event

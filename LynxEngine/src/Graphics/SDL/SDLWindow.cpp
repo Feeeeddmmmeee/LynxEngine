@@ -1,4 +1,5 @@
 #include "LynxEngine/Graphics/SDL/SDLWindow.h"
+#include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Logging.h"
 
 namespace Lynx
@@ -35,8 +36,7 @@ namespace Lynx
 			switch(e.type)
 			{
 				case SDL_EVENT_QUIT:
-					LYNX_ENGINE_DEBUG("QUIT");
-					exit(0);
+					this->eventCallback(new WindowClose());
 					break;
 				default:
 					break;
