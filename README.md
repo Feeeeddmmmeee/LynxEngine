@@ -5,7 +5,9 @@ A simple 2D C++ game engine
 - [x]  Macro based logging
 - [ ]  Event system
     - [x] General event implementation
-    - [ ] Specific event types (window, input, etc.)
+    - [ ] Window events
+    - [ ] Keyboard events
+    - [ ] Mouse events
 - [ ]  ECS
 - [ ]  Rendering
 - [ ]  Resource management
