@@ -1,12 +1,12 @@
 #pragma once
 
-#include "LynxEngine/LayerManager.h"
+#include "LynxEngine/LayerStack.h"
 
 #include <string>
 
 namespace Lynx
 {
-	class Application : public LayerManager
+	class Application
 	{
 		public:
 			Application(std::string name="Lynx App", unsigned int windowWidth=640, unsigned int windowHeight=480);
@@ -17,10 +17,17 @@ namespace Lynx
 
 			void close();
 			bool isRunning() { return this->running; };
+			
+			template<typename TLayer, typename... Args>
+			void pushLayer(Args&&... args)
+			{
+				this->layerStack.pushLayer<TLayer>(std::forward<Args>(args)...);
+			}
 
 		private:
 			bool running = 0;
 			std::queue<Lynx::Event*> eventQueue;
+			Lynx::LayerStack layerStack;
 
 			void handleEvents();
 

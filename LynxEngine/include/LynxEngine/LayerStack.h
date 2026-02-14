@@ -11,7 +11,7 @@
 
 namespace Lynx
 {
-	class LayerManager
+	class LayerStack
 	{
 		public:
 			template<typename TLayer, typename... Args>
@@ -77,13 +77,13 @@ namespace Lynx
 				});
 			}
 
-		protected:
-			void updateLayers();
-			std::vector<std::unique_ptr<Layer>> layers;
-
 		private:
+			friend class Application;
+			std::vector<std::unique_ptr<Layer>> layers;
 			std::queue<std::function<void()>> updateQueue;
 
+			void handleEvent(Lynx::Event *event);
+			void updateLayers();
 			void processOperations();
 	};
 }

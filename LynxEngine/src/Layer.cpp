@@ -2,8 +2,8 @@
 
 namespace Lynx
 {
-	void Layer::init(LayerManager *manager)
+	void Layer::init(LayerStack *manager)
 	{
-		this->layerManager = manager;
+		this->layerStack = manager;
 	}
 }

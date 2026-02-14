@@ -11,7 +11,7 @@ namespace Lynx
 		int i = 0;
 		while(this->isRunning() && i < 5000000)
 		{
-			this->updateLayers();
+			this->layerStack.updateLayers();
 			this->handleEvents();
 			++i;
 		}
@@ -28,14 +28,10 @@ namespace Lynx
 	{
 		while(!this->eventQueue.empty())
 		{
-			auto e = this->eventQueue.front();
-			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(e).name());
-			for(auto it = this->layers.end(); it != this->layers.begin();)
-			{
-				(*--it)->onEvent(e);
-				if(e->handled) break;
-			}
-			delete e;
+			auto event = this->eventQueue.front();
+			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(event).name());
+			this->layerStack.handleEvent(event);
+			delete event;
 			this->eventQueue.pop();
 		}
 	}

@@ -4,7 +4,7 @@
 
 namespace Lynx
 {
-	class LayerManager;
+	class LayerStack;
 	class Layer
 	{
 		public:
@@ -16,12 +16,12 @@ namespace Lynx
 			virtual void onDetach() {};
 
 		protected:
-			inline LayerManager* getManager() const { return this->layerManager; };
+			inline LayerStack* getManager() const { return this->layerStack; };
 
 		private:
-			friend class LayerManager;
-			LayerManager *layerManager;
+			friend class LayerStack;
+			LayerStack *layerStack;
 
-			void init(LayerManager *manager);
+			void init(LayerStack *manager);
 	};
 }

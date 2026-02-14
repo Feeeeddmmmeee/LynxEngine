@@ -1,8 +1,8 @@
-#include "LynxEngine/LayerManager.h"
+#include "LynxEngine/LayerStack.h"
 
 namespace Lynx
 {
-	void LayerManager::updateLayers()
+	void LayerStack::updateLayers()
 	{
 		this->processOperations();
 		for(auto &layer : this->layers)
@@ -11,13 +11,22 @@ namespace Lynx
 		}
 	}
 
-	void LayerManager::processOperations()
+	void LayerStack::processOperations()
 	{
 		while(!this->updateQueue.empty())
 		{
 			auto &op = this->updateQueue.front();
 			op();
 			this->updateQueue.pop();
+		}
+	}
+
+	void LayerStack::handleEvent(Lynx::Event *event)
+	{
+		for(auto it = this->layers.end(); it != this->layers.begin();)
+		{
+			(*--it)->onEvent(event);
+			if(event->handled) break;
 		}
 	}
 }
