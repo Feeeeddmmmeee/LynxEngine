@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LynxEngine/LayerStack.h"
+#include "LynxEngine/Graphics/Window.h"
 
 #include <string>
 
@@ -28,6 +29,7 @@ namespace Lynx
 			bool running = 0;
 			std::queue<Lynx::Event*> eventQueue;
 			Lynx::LayerStack layerStack;
+			Lynx::Window *window;
 
 			void handleEvents();
 

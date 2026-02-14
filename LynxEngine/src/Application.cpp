@@ -1,22 +1,18 @@
 #include "LynxEngine/Application.h"
+#include "LynxEngine/Events/EventDispatcher.h"
 #include "LynxEngine/Logging.h"
 
 namespace Lynx
 {
 	void Application::run()
 	{
-		LYNX_ENGINE_DEBUG("Initializing {}...", this->name);
-
-		// temporary to stop infinite loops
-		int i = 0;
-		while(this->isRunning() && i < 5000000)
+		while(this->isRunning())
 		{
+			this->window->update();
 			this->layerStack.updateLayers();
-			this->handleEvents();
-			++i;
-		}
 
-		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
+			this->handleEvents();
+		}
 	}
 
 	void Application::queueEvent(Lynx::Event *event)
@@ -30,6 +26,9 @@ namespace Lynx
 		{
 			auto event = this->eventQueue.front();
 			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(event).name());
+
+			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
+
 			this->layerStack.handleEvent(event);
 			delete event;
 			this->eventQueue.pop();
@@ -43,15 +42,24 @@ namespace Lynx
 
 	Application::Application(std::string name, unsigned int windowWidth, unsigned int windowHeight)
 	{
+		LYNX_ENGINE_DEBUG("Initializing {}...", name);
+
 		this->name = name;
 		this->windowWidth = windowWidth;
 		this->windowHeight = windowHeight;
+
+		this->window = Window::create();
+		this->window->setEventCallback([this](Lynx::Event *e){
+				this->queueEvent(e);
+		});
 
 		this->running = 1;
 	}
 
 	Application::~Application()
 	{
+		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
 
+		delete this->window;
 	}
 }
