@@ -37,7 +37,7 @@ class TestLayer : public Lynx::Layer
 
 int main()
 {
-	Lynx::Application game = Lynx::Application("Example", 640, 480);
+	Lynx::Application game = Lynx::Application();
 	game.pushLayer<TestLayer>();
 	game.pushLayer<NamedLayer>();
 	game.run();

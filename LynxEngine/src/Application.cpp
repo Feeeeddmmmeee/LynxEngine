@@ -26,7 +26,7 @@ namespace Lynx
 		while(!this->eventQueue.empty())
 		{
 			auto event = this->eventQueue.front();
-			LYNX_ENGINE_DEBUG("Handling event: {}", typeid(event).name());
+			LYNX_ENGINE_DEBUG("Handling event: {}", (int)event->getType());
 
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
 			dispatcher.dispatch<WindowCloseEvent>([this](Lynx::Event*){ this->close(); return 1; });
@@ -42,15 +42,12 @@ namespace Lynx
 		this->running = 0;
 	}
 
-	Application::Application(std::string name, unsigned int windowWidth, unsigned int windowHeight)
+	Application::Application(const WindowSpec &winSpec)
 	{
+		this->name = winSpec.name;
 		LYNX_ENGINE_DEBUG("Initializing {}...", name);
 
-		this->name = name;
-		this->windowWidth = windowWidth;
-		this->windowHeight = windowHeight;
-
-		this->window = Window::create();
+		this->window = Window::create(winSpec);
 		this->window->setEventCallback([this](Lynx::Event *e){
 				this->queueEvent(e);
 		});

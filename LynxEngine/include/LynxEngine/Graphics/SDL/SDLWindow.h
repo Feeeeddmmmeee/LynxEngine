@@ -3,14 +3,14 @@
 #include "LynxEngine/Graphics/Window.h"
 
 #include <SDL3/SDL.h>
-#include <string>
 
 namespace Lynx
 {
+
 	class SDLWindow : public Window
 	{
 		public:
-			SDLWindow(std::string, int width, int height);
+			SDLWindow(const WindowSpec&);
 			~SDLWindow();
 
 			void update() override;

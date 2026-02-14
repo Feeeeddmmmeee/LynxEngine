@@ -10,7 +10,7 @@ namespace Lynx
 	class Application
 	{
 		public:
-			Application(std::string name="Lynx App", unsigned int windowWidth=640, unsigned int windowHeight=480);
+			Application(const WindowSpec &winSpec = WindowSpec());
 			~Application();
 
 			void run();
@@ -35,6 +35,5 @@ namespace Lynx
 
 			// Temporary
 			std::string name;
-			unsigned int windowWidth, windowHeight;
 	};
 }

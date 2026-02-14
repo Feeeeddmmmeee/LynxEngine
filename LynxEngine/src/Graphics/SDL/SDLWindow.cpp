@@ -9,9 +9,9 @@ namespace Lynx
 	// TEMPORARY !!!
 	static SDL_Renderer *renderer;
 
-	Window *Window::create()
+	Window *Window::create(const WindowSpec &spec)
 	{
-		return new SDLWindow("Lynx Engine", 1280, 720);
+		return new SDLWindow(spec);
 	}
 
 	void SDLWindow::update()
@@ -50,7 +50,7 @@ namespace Lynx
 		}
 	}
 
-	SDLWindow::SDLWindow(std::string title, int width, int height)
+	SDLWindow::SDLWindow(const WindowSpec &spec)
 	{
 		if(!initializedSDL)
 		{
@@ -64,8 +64,12 @@ namespace Lynx
 			initializedSDL = 1;
 		}
 
+		unsigned long flags = 0;
+		if(spec.fullscreen) flags |= SDL_WINDOW_FULLSCREEN;
+		if(spec.resizable) flags |= SDL_WINDOW_RESIZABLE;
+
 		LYNX_ENGINE_DEBUG("Creating SDL Window...");
-		this->window = SDL_CreateWindow(title.c_str(), width, height, SDL_WINDOW_RESIZABLE);
+		this->window = SDL_CreateWindow(spec.name.c_str(), spec.width, spec.height, flags);
 		if(this->window == NULL) LYNX_ENGINE_ERROR("Failed to create SDL Window!");
 
 		// TEMPORARY !!!
