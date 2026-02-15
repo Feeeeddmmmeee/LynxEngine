@@ -52,6 +52,7 @@ namespace Lynx
 
 	SDLWindow::SDLWindow(const WindowSpec &spec)
 	{
+		this->spec = spec;
 		if(!initializedSDL)
 		{
 			SDL_SetLogPriorities(SDL_LOG_PRIORITY_VERBOSE);
@@ -79,5 +80,20 @@ namespace Lynx
 	SDLWindow::~SDLWindow()
 	{
 		SDL_DestroyWindow(this->window);
+	}
+	
+	void SDLWindow::setFullscreen(bool fullscreen)
+	{
+		SDL_SetWindowFullscreen(this->window, fullscreen);
+	}
+
+	void SDLWindow::setResizable(bool resizable)
+	{
+		SDL_SetWindowResizable(this->window, resizable);
+	}
+
+	void SDLWindow::setTitle(std::string title)
+	{
+		SDL_SetWindowTitle(this->window, title.c_str());
 	}
 }

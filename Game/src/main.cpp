@@ -1,5 +1,4 @@
 #include <LynxEngine.h>
-#include <LynxEngine/Events/EventDispatcher.h>
 
 class NamedLayer : public Lynx::Layer
 {
@@ -37,7 +36,8 @@ class TestLayer : public Lynx::Layer
 
 int main()
 {
-	Lynx::Application game = Lynx::Application();
+	Lynx::WindowSpec spec;
+	Lynx::Application game = Lynx::Application(spec);
 	game.pushLayer<TestLayer>();
 	game.pushLayer<NamedLayer>();
 	game.run();

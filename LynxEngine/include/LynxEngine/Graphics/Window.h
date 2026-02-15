@@ -24,9 +24,17 @@ namespace Lynx
 		public:
 			virtual ~Window() = default;
 
-			virtual void update() = 0;
 			virtual void setEventCallback(std::function<void(Lynx::Event*)> callback) = 0;
+			virtual void update() = 0;
+			virtual void setFullscreen(bool fullscreen) = 0;
+			virtual void setResizable(bool resizable) = 0;
+			virtual void setTitle(std::string name) = 0;
+
+			const WindowSpec &getWinSpec() { return this->spec; }
 
 			static Window *create(const WindowSpec &spec);
+
+		protected:
+			WindowSpec spec;
 	};
 }

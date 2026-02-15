@@ -15,6 +15,9 @@ namespace Lynx
 
 			void update() override;
 			void setEventCallback(std::function<void(Lynx::Event*)> callback) override;
+			void setFullscreen(bool fullscreen) override;
+			void setResizable(bool resizable) override;
+			void setTitle(std::string name) override;
 
 		private:
 			std::function<void(Lynx::Event*)> eventCallback;
