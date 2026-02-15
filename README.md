@@ -8,8 +8,10 @@ A simple 2D C++ game engine
     - [ ] Window events
     - [ ] Keyboard events
     - [ ] Mouse events
+- [ ]  Graphics
+    - [x] Window abstraction + SDL implementation
+    - [ ] Rendering
 - [ ]  ECS
-- [ ]  Rendering
 - [ ]  Resource management
 - [ ]  Audio support
 
