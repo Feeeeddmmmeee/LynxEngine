@@ -1,13 +1,14 @@
 #include "LynxEngine/Graphics/SDL/SDLWindow.h"
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Logging.h"
+#include <SDL3/SDL_events.h>
+
+// TEMPORARY !!!
+SDL_Renderer *renderer;
 
 namespace Lynx
 {
 	static bool initializedSDL = 0;
-
-	// TEMPORARY !!!
-	static SDL_Renderer *renderer;
 
 	Window *Window::create(const WindowSpec &spec)
 	{
@@ -43,6 +44,18 @@ namespace Lynx
 					break;
 				case SDL_EVENT_WINDOW_MOVED:
 					this->eventCallback(new WindowMoveEvent(e.window.data1, e.window.data2));
+					break;
+				case SDL_EVENT_WINDOW_ENTER_FULLSCREEN:
+					this->eventCallback(new WindowEnterFullscreenEvent());
+					break;
+				case SDL_EVENT_WINDOW_LEAVE_FULLSCREEN:
+					this->eventCallback(new WindowExitFullscreenEvent());
+					break;
+				case SDL_EVENT_WINDOW_FOCUS_GAINED:
+					this->eventCallback(new WindowEnterFocusEvent());
+					break;
+				case SDL_EVENT_WINDOW_FOCUS_LOST:
+					this->eventCallback(new WindowExitFocusEvent());
 					break;
 				default:
 					break;

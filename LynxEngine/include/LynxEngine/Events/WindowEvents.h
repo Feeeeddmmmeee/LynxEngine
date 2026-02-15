@@ -36,4 +36,27 @@ namespace Lynx
 			int x, y;
 	};
 
+	class WindowEnterFullscreenEvent : public Event
+	{
+		public:
+			DECL_EVENT_METHODS(WindowEnterFullscreen)
+	};
+
+	class WindowExitFullscreenEvent : public Event
+	{
+		public:
+			DECL_EVENT_METHODS(WindowExitFullscreen)
+	};
+
+	class WindowEnterFocusEvent : public Event
+	{
+		public:
+			DECL_EVENT_METHODS(WindowEnterFocus)
+	};
+
+	class WindowExitFocusEvent : public Event
+	{
+		public:
+			DECL_EVENT_METHODS(WindowExitFocus)
+	};
 }
