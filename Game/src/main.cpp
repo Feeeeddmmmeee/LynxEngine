@@ -1,4 +1,3 @@
-#include "LynxEngine/Events/WindowEvents.h"
 #include <LynxEngine.h>
 #include <SDL3/SDL.h>
 #include <glm/gtc/random.hpp>
@@ -9,6 +8,7 @@ extern SDL_Renderer *renderer;
 class TestLayer : public Lynx::Layer
 {
 	public:
+		TestLayer(Lynx::Application *app) : app(app) {}
 		void onAttach() override
 		{
 			LYNX_DEBUG("Test layer attached...");
@@ -25,14 +25,21 @@ class TestLayer : public Lynx::Layer
 				SDL_SetRenderDrawColor(renderer, r, g, b, 0);
 				return true;
 			});
+
+			d.dispatch<Lynx::KeyPressedEvent>([this](Lynx::KeyPressedEvent *e){
+				LYNX_DEBUG("Key pressed: {}", (char)e->getKey());
+				if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
+				return 0;
+			});
 		}
 	private:
+		Lynx::Application *app;
 };
 
 int main()
 {
 	Lynx::WindowSpec spec;
 	Lynx::Application game = Lynx::Application(spec);
-	game.pushLayer<TestLayer>();
+	game.pushLayer<TestLayer>(&game);
 	game.run();
 }

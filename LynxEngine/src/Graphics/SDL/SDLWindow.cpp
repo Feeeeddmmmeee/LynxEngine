@@ -1,5 +1,6 @@
 #include "LynxEngine/Graphics/SDL/SDLWindow.h"
 #include "LynxEngine/Events/WindowEvents.h"
+#include "LynxEngine/Events/KeyboardEvents.h"
 #include "LynxEngine/Logging.h"
 #include <SDL3/SDL_events.h>
 
@@ -56,6 +57,12 @@ namespace Lynx
 					break;
 				case SDL_EVENT_WINDOW_FOCUS_LOST:
 					this->eventCallback(new WindowExitFocusEvent());
+					break;
+				case SDL_EVENT_KEY_DOWN:
+					this->eventCallback(new KeyPressedEvent((Keycode)e.key.key));
+					break;
+				case SDL_EVENT_KEY_UP:
+					this->eventCallback(new KeyReleasedEvent((Keycode)e.key.key));
 					break;
 				default:
 					break;
