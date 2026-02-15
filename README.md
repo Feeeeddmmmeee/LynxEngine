@@ -36,7 +36,7 @@ int main()
 
 ## :package: Dependencies
 - spdlog
-- glm
+- sdl3
 
 
 <br>
