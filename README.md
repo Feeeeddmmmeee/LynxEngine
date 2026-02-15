@@ -28,7 +28,7 @@ class MyLayer : public Lynx::Layer
     {
       LYNX_INFO("Hello World");
     }
-};
+};z
 
 int main()
 {
@@ -39,9 +39,11 @@ int main()
 ```
 
 ## :package: Dependencies
-- spdlog
-- sdl3
-
+| Library | Use |
+| --- | --- |
+|spdlog | Logging |
+| SDL3 | Window creation, Input |
+| glm | Math |
 
 <br>
 
