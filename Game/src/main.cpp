@@ -1,26 +1,10 @@
+#include "LynxEngine/Events/WindowEvents.h"
 #include <LynxEngine.h>
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_render.h>
+#include <glm/gtc/random.hpp>
 
 // TEMPORARY !!!
 extern SDL_Renderer *renderer;
-
-class NamedLayer : public Lynx::Layer
-{
-	public:
-		std::string name;
-		NamedLayer(std::string n) : name(n) {}
-		NamedLayer() : name("NamedLayer"){}
-		void onAttach() override
-		{
-			LYNX_DEBUG("Named layer {} attached... ",this->name);
-		}
-		void onEvent(Lynx::Event *event) override
-		{
-			LYNX_WARN("Event handled by {}", this->name);
-			Lynx::EventDispatcher d(event);
-		}
-};
 
 class TestLayer : public Lynx::Layer
 {
@@ -30,14 +14,19 @@ class TestLayer : public Lynx::Layer
 			LYNX_DEBUG("Test layer attached...");
 			SDL_SetRenderDrawColor(renderer, 0x0d, 0x2b, 0x45, 0);
 		}
-		void onDetach() override
-		{
-			LYNX_DEBUG("Test layer detached...");
-		}
+
 		void onEvent(Lynx::Event *event) override
 		{
-			LYNX_WARN("Event handled by Test, {}", event->handled);
+			Lynx::EventDispatcher d(event);
+			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](){
+				int r = glm::linearRand(0, 255);
+				int g = glm::linearRand(0, 255);
+				int b = glm::linearRand(0, 255);
+				SDL_SetRenderDrawColor(renderer, r, g, b, 0);
+				return true;
+			});
 		}
+	private:
 };
 
 int main()
@@ -45,6 +34,5 @@ int main()
 	Lynx::WindowSpec spec;
 	Lynx::Application game = Lynx::Application(spec);
 	game.pushLayer<TestLayer>();
-	game.pushLayer<NamedLayer>();
 	game.run();
 }
