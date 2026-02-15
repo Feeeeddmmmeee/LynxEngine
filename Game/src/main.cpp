@@ -1,4 +1,9 @@
 #include <LynxEngine.h>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_render.h>
+
+// TEMPORARY !!!
+extern SDL_Renderer *renderer;
 
 class NamedLayer : public Lynx::Layer
 {
@@ -23,6 +28,7 @@ class TestLayer : public Lynx::Layer
 		void onAttach() override
 		{
 			LYNX_DEBUG("Test layer attached...");
+			SDL_SetRenderDrawColor(renderer, 0x0d, 0x2b, 0x45, 0);
 		}
 		void onDetach() override
 		{
