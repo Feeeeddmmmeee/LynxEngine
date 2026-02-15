@@ -5,27 +5,28 @@
 
 namespace Lynx
 {
-	class KeyPressedEvent : public Event
+	class KeyEvent : public Event 
 	{
 		public:
-			DECL_EVENT_METHODS(KeyPressed)
-
-			KeyPressedEvent(Keycode key) : key(key) {}
+			KeyEvent(Keycode key) : key(key) {}
 			Keycode getKey() const { return key; }
-
 		private:
 			Keycode key;
 	};
 
-	class KeyReleasedEvent : public Event
+	class KeyPressedEvent : public KeyEvent
+	{
+		public:
+			DECL_EVENT_METHODS(KeyPressed)
+
+			KeyPressedEvent(Keycode key) : KeyEvent(key) {}
+	};
+
+	class KeyReleasedEvent : public KeyEvent
 	{
 		public:
 			DECL_EVENT_METHODS(KeyReleased)
 
-			KeyReleasedEvent(Keycode key) : key(key) {}
-			Keycode getKey() const { return key; }
-
-		private:
-			Keycode key;
+			KeyReleasedEvent(Keycode key) : KeyEvent(key) {}
 	};
 }
