@@ -18,7 +18,7 @@ class TestLayer : public Lynx::Layer
 		void onEvent(Lynx::Event *event) override
 		{
 			Lynx::EventDispatcher d(event);
-			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](){
+			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](Lynx::Event*){
 				int r = glm::linearRand(0, 255);
 				int g = glm::linearRand(0, 255);
 				int b = glm::linearRand(0, 255);
@@ -26,9 +26,9 @@ class TestLayer : public Lynx::Layer
 				return true;
 			});
 
-			d.dispatch<Lynx::KeyPressedEvent>([this](Lynx::KeyPressedEvent *e){
-				LYNX_DEBUG("Key pressed: {}", (char)e->getKey());
-				if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
+			d.matchAny<Lynx::KeyReleasedEvent, Lynx::KeyRepeatEvent>([this](Lynx::Event *e){
+				LYNX_DEBUG("Key pressed: {}", (char)((Lynx::KeyEvent*)e)->getKey());
+				if(((Lynx::KeyEvent*)e)->getKey() == Lynx::Keycode::Q) this->app->close(); 
 				return 0;
 			});
 		}

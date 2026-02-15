@@ -22,6 +22,14 @@ namespace Lynx
 			KeyPressedEvent(Keycode key) : KeyEvent(key) {}
 	};
 
+	class KeyRepeatEvent : public KeyEvent
+	{
+		public:
+			DECL_EVENT_METHODS(KeyRepeat)
+
+			KeyRepeatEvent(Keycode key) : KeyEvent(key) {}
+	};
+
 	class KeyReleasedEvent : public KeyEvent
 	{
 		public:

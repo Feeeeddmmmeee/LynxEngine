@@ -59,7 +59,10 @@ namespace Lynx
 					this->eventCallback(new WindowExitFocusEvent());
 					break;
 				case SDL_EVENT_KEY_DOWN:
-					this->eventCallback(new KeyPressedEvent((Keycode)e.key.key));
+					if(e.key.repeat)
+						this->eventCallback(new KeyRepeatEvent((Keycode)e.key.key));
+					else
+						this->eventCallback(new KeyPressedEvent((Keycode)e.key.key));
 					break;
 				case SDL_EVENT_KEY_UP:
 					this->eventCallback(new KeyReleasedEvent((Keycode)e.key.key));

@@ -11,7 +11,7 @@ namespace Lynx
 		None=0,
 		WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, 
 			WindowExitFullscreen, WindowEnterFocus, WindowExitFocus,
-		KeyPressed, KeyReleased
+		KeyPressed, KeyReleased, KeyRepeat
 	};
 
 	class Event
