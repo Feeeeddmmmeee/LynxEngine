@@ -5,7 +5,7 @@ A simple 2D C++ game engine
 - [x]  Macro based logging
 - [ ]  Event system
     - [x] General event implementation
-    - [ ] Window events
+    - [x] Window events (WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, WindowExitFullscreen, WindowEnterFocus, WindowExitFocus)
     - [ ] Keyboard events
     - [ ] Mouse events
 - [ ]  Graphics
