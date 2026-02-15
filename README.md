@@ -42,8 +42,8 @@ int main()
 | Library | Use |
 | --- | --- |
 |spdlog | Logging |
-| SDL3 | Window creation, Input |
-| glm | Math |
+| SDL3 | Window creation, Input + probably rendering (SDL_GPU) |
+| glm (likely, not actually used yet) | Math |
 
 <br>
 
