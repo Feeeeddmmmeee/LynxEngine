@@ -1,5 +1,5 @@
-#include "LynxEngine/Events/MouseEvents.h"
 #include <LynxEngine.h>
+
 #include <SDL3/SDL.h>
 #include <glm/gtc/random.hpp>
 
@@ -16,27 +16,30 @@ class TestLayer : public Lynx::Layer
 			SDL_SetRenderDrawColor(renderer, 0x0d, 0x2b, 0x45, 0);
 		}
 
+		bool callback(Lynx::MouseButtonEvent* e)
+		{
+			LYNX_DEBUG("Interacted with {}", (int)e->getButton());
+			return 0;
+		}
+
 		void onEvent(Lynx::Event *event) override
 		{
 			Lynx::EventDispatcher d(event);
 			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](Lynx::Event*){
-				int r = glm::linearRand(0, 255);
-				int g = glm::linearRand(0, 255);
-				int b = glm::linearRand(0, 255);
-				SDL_SetRenderDrawColor(renderer, r, g, b, 0);
-				return true;
-			});
+					int r = glm::linearRand(0, 255);
+					int g = glm::linearRand(0, 255);
+					int b = glm::linearRand(0, 255);
+					SDL_SetRenderDrawColor(renderer, r, g, b, 0);
+					return true;
+					});
 
-			d.matchAny<Lynx::KeyReleasedEvent, Lynx::KeyRepeatEvent>([this](Lynx::Event *e){
-				LYNX_DEBUG("Key pressed: {}", (char)((Lynx::KeyEvent*)e)->getKey());
-				if(((Lynx::KeyEvent*)e)->getKey() == Lynx::Keycode::Q) this->app->close(); 
-				return 0;
-			});
+			d.matchAny<Lynx::KeyReleasedEvent, Lynx::KeyRepeatEvent>([&](Lynx::KeyEvent *e){
+					LYNX_DEBUG("Key pressed: {}", (char)e->getKey());
+					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
+					return 0;
+					});
 
-			d.dispatch<Lynx::MouseMoveEvent>([this](Lynx::MouseMoveEvent* e){
-				LYNX_DEBUG("({}, {}), {}, {}", e->getPos().first, e->getPos().second, e->getX(), e->getY());;
-				return 0;
-			});
+			d.matchAny<Lynx::MouseButtonPressedEvent, Lynx::MouseButtonReleasedEvent>([&](Lynx::MouseButtonEvent* e){return callback(e);});
 		}
 	private:
 		Lynx::Application *app;
