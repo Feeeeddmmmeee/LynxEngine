@@ -73,9 +73,12 @@ namespace Lynx
 				case SDL_EVENT_KEY_UP:
 					this->eventCallback(new KeyReleasedEvent((Keycode)e.key.key));
 					break;
+
+				// MOUSE EVENTS
 				case SDL_EVENT_MOUSE_MOTION:
 					break;
 				case SDL_EVENT_MOUSE_WHEEL:
+					this->eventCallback(new MouseScrollEvent(e.wheel.x, e.wheel.y));
 					break;
 				case SDL_EVENT_MOUSE_BUTTON_DOWN:
 					this->eventCallback(new MouseButtonPressedEvent((Mousecode)e.button.button));

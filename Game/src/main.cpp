@@ -1,3 +1,4 @@
+#include "LynxEngine/Events/MouseEvents.h"
 #include <LynxEngine.h>
 #include <SDL3/SDL.h>
 #include <glm/gtc/random.hpp>
@@ -32,8 +33,8 @@ class TestLayer : public Lynx::Layer
 				return 0;
 			});
 
-			d.dispatch<Lynx::MouseButtonPressedEvent>([this](Lynx::MouseButtonPressedEvent* e){
-				LYNX_DEBUG("Button pressed: {}", (int)e->getButton());
+			d.dispatch<Lynx::MouseScrollEvent>([this](Lynx::MouseScrollEvent* e){
+				LYNX_DEBUG("Button pressed: ({}, {}), {}, {}", e->getDelta().first, e->getDelta().second, e->getDeltaX(), e->getDeltaY());;
 				return 0;
 			});
 		}
