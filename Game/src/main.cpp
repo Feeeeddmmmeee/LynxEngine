@@ -31,6 +31,11 @@ class TestLayer : public Lynx::Layer
 				if(((Lynx::KeyEvent*)e)->getKey() == Lynx::Keycode::Q) this->app->close(); 
 				return 0;
 			});
+
+			d.dispatch<Lynx::MouseButtonPressedEvent>([this](Lynx::MouseButtonPressedEvent* e){
+				LYNX_DEBUG("Button pressed: {}", (int)e->getButton());
+				return 0;
+			});
 		}
 	private:
 		Lynx::Application *app;

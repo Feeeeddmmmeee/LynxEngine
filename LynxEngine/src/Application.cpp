@@ -26,10 +26,9 @@ namespace Lynx
 		while(!this->eventQueue.empty())
 		{
 			auto event = this->eventQueue.front();
-			LYNX_ENGINE_DEBUG("Handling event: {}", (int)event->getType());
 
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
-			dispatcher.dispatch<WindowCloseEvent>([this](Lynx::Event*){ this->close(); return 1; });
+			dispatcher.dispatch<WindowCloseEvent>([this](Lynx::Event*){ this->close(); return 0; });
 
 			this->layerStack.handleEvent(event);
 			delete event;

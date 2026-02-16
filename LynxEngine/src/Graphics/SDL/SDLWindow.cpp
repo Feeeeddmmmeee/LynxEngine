@@ -1,8 +1,11 @@
 #include "LynxEngine/Graphics/SDL/SDLWindow.h"
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Events/KeyboardEvents.h"
+#include "LynxEngine/Events/MouseEvents.h"
 #include "LynxEngine/Logging.h"
+
 #include <SDL3/SDL_events.h>
+#include <SDL3/SDL_mouse.h>
 
 // TEMPORARY !!!
 SDL_Renderer *renderer;
@@ -37,6 +40,7 @@ namespace Lynx
 		{
 			switch(e.type)
 			{
+				// WINDOW EVENTS
 				case SDL_EVENT_QUIT:
 					this->eventCallback(new WindowCloseEvent());
 					break;
@@ -58,6 +62,8 @@ namespace Lynx
 				case SDL_EVENT_WINDOW_FOCUS_LOST:
 					this->eventCallback(new WindowExitFocusEvent());
 					break;
+
+				// KEYBOARD EVENTS
 				case SDL_EVENT_KEY_DOWN:
 					if(e.key.repeat)
 						this->eventCallback(new KeyRepeatEvent((Keycode)e.key.key));
@@ -66,6 +72,16 @@ namespace Lynx
 					break;
 				case SDL_EVENT_KEY_UP:
 					this->eventCallback(new KeyReleasedEvent((Keycode)e.key.key));
+					break;
+				case SDL_EVENT_MOUSE_MOTION:
+					break;
+				case SDL_EVENT_MOUSE_WHEEL:
+					break;
+				case SDL_EVENT_MOUSE_BUTTON_DOWN:
+					this->eventCallback(new MouseButtonPressedEvent((Mousecode)e.button.button));
+					break;
+				case SDL_EVENT_MOUSE_BUTTON_UP:
+					this->eventCallback(new MouseButtonReleasedEvent((Mousecode)e.button.button));
 					break;
 				default:
 					break;

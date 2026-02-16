@@ -9,9 +9,13 @@ namespace Lynx
 	enum class EventType
 	{
 		None=0,
+
 		WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, 
-			WindowExitFullscreen, WindowEnterFocus, WindowExitFocus,
-		KeyPressed, KeyReleased, KeyRepeat
+		WindowExitFullscreen, WindowEnterFocus, WindowExitFocus,
+
+		KeyPressed, KeyReleased, KeyRepeat,
+
+		MouseMove, MouseScroll, MouseButtonPressed, MouseButtonReleased
 	};
 
 	class Event

@@ -28,7 +28,7 @@ class MyLayer : public Lynx::Layer
     {
       LYNX_INFO("Hello World");
     }
-};z
+};
 
 int main()
 {

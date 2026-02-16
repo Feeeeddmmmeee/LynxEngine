@@ -10,6 +10,7 @@ namespace Lynx
 		public:
 			KeyEvent(Keycode key) : key(key) {}
 			Keycode getKey() const { return key; }
+
 		private:
 			Keycode key;
 	};
