@@ -47,4 +47,18 @@ namespace Lynx
 		private:
 			float dx, dy;
 	};
+
+	class MouseMoveEvent : public Event
+	{
+		public:
+			DECL_EVENT_METHODS(MouseMove)
+
+			MouseMoveEvent(float x, float y) : x(x), y(y) {}
+			std::pair<float, float> getPos() const { return std::make_pair(x, y); }
+			float getX() const { return x; }
+			float getY() const { return y; }
+
+		private:
+			float x, y;
+	};
 }

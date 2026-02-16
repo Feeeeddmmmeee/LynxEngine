@@ -33,8 +33,8 @@ class TestLayer : public Lynx::Layer
 				return 0;
 			});
 
-			d.dispatch<Lynx::MouseScrollEvent>([this](Lynx::MouseScrollEvent* e){
-				LYNX_DEBUG("Button pressed: ({}, {}), {}, {}", e->getDelta().first, e->getDelta().second, e->getDeltaX(), e->getDeltaY());;
+			d.dispatch<Lynx::MouseMoveEvent>([this](Lynx::MouseMoveEvent* e){
+				LYNX_DEBUG("({}, {}), {}, {}", e->getPos().first, e->getPos().second, e->getX(), e->getY());;
 				return 0;
 			});
 		}

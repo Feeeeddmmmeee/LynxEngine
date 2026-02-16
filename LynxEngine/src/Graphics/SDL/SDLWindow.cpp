@@ -76,6 +76,7 @@ namespace Lynx
 
 				// MOUSE EVENTS
 				case SDL_EVENT_MOUSE_MOTION:
+					this->eventCallback(new MouseMoveEvent(e.motion.x, e.motion.y));
 					break;
 				case SDL_EVENT_MOUSE_WHEEL:
 					this->eventCallback(new MouseScrollEvent(e.wheel.x, e.wheel.y));
