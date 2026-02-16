@@ -1,6 +1,8 @@
 #pragma once
 
 #include "LynxEngine/Application.h"
+#include "LynxEngine/Logging.h"
+#include "LynxEngine/Layer.h"
 
 // Events
 #include "LynxEngine/Events/EventDispatcher.h"
@@ -10,5 +12,5 @@
 
 // Input
 #include "LynxEngine/Input/Keycodes.h"
-
-#include "LynxEngine/Logging.h"
+#include "LynxEngine/Input/Mousecodes.h"
+#include "LynxEngine/Input/InputManager.h"

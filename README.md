@@ -4,14 +4,16 @@ A simple 2D C++ game engine
 - [x]  Layer system
 - [x]  Macro based logging
 - [x]  Event system
-    - [x] General event implementation
     - [x] Non blocking event queue
     - [x] Window events (WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, WindowExitFullscreen, WindowEnterFocus, WindowExitFocus)
     - [x] Keyboard events (KeyPressed, KeyReleased, KeyRepeat)
         - [x] Custom keycodes
     - [x] Mouse events (MouseButtonPressed, MouseButtonReleased, MouseScroll, MouseMove)
+- [x] User input polling
+    - [x] SDL implementation
 - [ ]  Graphics
-    - [x] Window abstraction + SDL implementation
+    - [x] Window abstraction
+    - [x] SDL window implementation
     - [ ] Rendering
 - [ ]  ECS
 - [ ]  Resource management
@@ -42,7 +44,7 @@ int main()
 | Library | Use |
 | --- | --- |
 |spdlog | Logging |
-| SDL3 | Window creation, Input + probably rendering (SDL_GPU) |
+| SDL3 | Window creation, input + probably rendering (SDL_GPU) |
 | glm (likely, not actually used yet) | Math |
 
 <br>

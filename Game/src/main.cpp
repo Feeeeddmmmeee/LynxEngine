@@ -34,7 +34,6 @@ class TestLayer : public Lynx::Layer
 					});
 
 			d.matchAny<Lynx::KeyReleasedEvent, Lynx::KeyRepeatEvent>([&](Lynx::KeyEvent *e){
-					LYNX_DEBUG("Key pressed: {}", (char)e->getKey());
 					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
 					return 0;
 					});
@@ -47,8 +46,7 @@ class TestLayer : public Lynx::Layer
 
 int main()
 {
-	Lynx::WindowSpec spec;
-	Lynx::Application game = Lynx::Application(spec);
+	Lynx::Application game = Lynx::Application();
 	game.pushLayer<TestLayer>(&game);
 	game.run();
 }
