@@ -9,7 +9,7 @@ A simple 2D C++ game engine
     - [x] Window events (WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, WindowExitFullscreen, WindowEnterFocus, WindowExitFocus)
     - [x] Keyboard events (KeyPressed, KeyReleased, KeyRepeat)
         - [x] Custom keycodes
-    - [ ] Mouse events
+    - [x] Mouse events (MouseButtonPressed, MouseButtonReleased, MouseScroll, MouseMove)
 - [ ]  Graphics
     - [x] Window abstraction + SDL implementation
     - [ ] Rendering
