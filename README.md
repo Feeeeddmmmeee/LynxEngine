@@ -1,5 +1,5 @@
 # Lynx Engine
-A simple 2D C++ game engine
+A simple 2D C++ game engine.
 ## :sparkles: Features
 - [x]  Layer system
 - [x]  Macro based logging
