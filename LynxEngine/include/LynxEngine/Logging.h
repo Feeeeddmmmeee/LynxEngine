@@ -4,18 +4,18 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <memory>
 
-#define LOG_LEVEL_DEBUG 0
-#define LOG_LEVEL_INFO 1
-#define LOG_LEVEL_WARN 2
-#define LOG_LEVEL_ERROR 3
-#define LOG_LEVEL_NONE 4
+#define LYNX_LOG_LEVEL_DEBUG 0
+#define LYNX_LOG_LEVEL_INFO 1
+#define LYNX_LOG_LEVEL_WARN 2
+#define LYNX_LOG_LEVEL_ERROR 3
+#define LYNX_LOG_LEVEL_NONE 4
 
 #ifndef LYNX_CLIENT_LOG_LEVEL
-	#define LYNX_CLIENT_LOG_LEVEL LOG_LEVEL_DEBUG
+	#define LYNX_CLIENT_LOG_LEVEL LYNX_LOG_LEVEL_DEBUG
 #endif
 
 #ifndef LYNX_ENGINE_LOG_LEVEL
-	#define LYNX_ENGINE_LOG_LEVEL LOG_LEVEL_NONE
+	#define LYNX_ENGINE_LOG_LEVEL LYNX_LOG_LEVEL_NONE
 #endif
 
 namespace Lynx
@@ -47,12 +47,12 @@ namespace Lynx
 #define LYNX_LOG_INTERNAL(level, threshold, logger, ...) \
     (((level) <= (threshold)) ? logger(__VA_ARGS__) : (void)0)
 
-#define LYNX_DEBUG(...) LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LOG_LEVEL_DEBUG, Lynx::Logger::getClientLogger()->debug, __VA_ARGS__)
-#define LYNX_INFO(...)  LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LOG_LEVEL_INFO,  Lynx::Logger::getClientLogger()->info,  __VA_ARGS__)
-#define LYNX_WARN(...)  LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LOG_LEVEL_WARN,  Lynx::Logger::getClientLogger()->warn,  __VA_ARGS__)
-#define LYNX_ERROR(...) LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LOG_LEVEL_ERROR, Lynx::Logger::getClientLogger()->error, __VA_ARGS__)
+#define LYNX_DEBUG(...) LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LYNX_LOG_LEVEL_DEBUG, Lynx::Logger::getClientLogger()->debug, __VA_ARGS__)
+#define LYNX_INFO(...)  LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LYNX_LOG_LEVEL_INFO,  Lynx::Logger::getClientLogger()->info,  __VA_ARGS__)
+#define LYNX_WARN(...)  LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LYNX_LOG_LEVEL_WARN,  Lynx::Logger::getClientLogger()->warn,  __VA_ARGS__)
+#define LYNX_ERROR(...) LYNX_LOG_INTERNAL(LYNX_CLIENT_LOG_LEVEL, LYNX_LOG_LEVEL_ERROR, Lynx::Logger::getClientLogger()->error, __VA_ARGS__)
 
-#define LYNX_ENGINE_DEBUG(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LOG_LEVEL_DEBUG, Lynx::Logger::getEngineLogger()->debug, __VA_ARGS__)
-#define LYNX_ENGINE_INFO(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LOG_LEVEL_INFO,  Lynx::Logger::getEngineLogger()->info,  __VA_ARGS__)
-#define LYNX_ENGINE_WARN(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LOG_LEVEL_WARN,  Lynx::Logger::getEngineLogger()->warn,  __VA_ARGS__)
-#define LYNX_ENGINE_ERROR(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LOG_LEVEL_ERROR, Lynx::Logger::getEngineLogger()->error, __VA_ARGS__)
+#define LYNX_ENGINE_DEBUG(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_DEBUG, Lynx::Logger::getEngineLogger()->debug, __VA_ARGS__)
+#define LYNX_ENGINE_INFO(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_INFO,  Lynx::Logger::getEngineLogger()->info,  __VA_ARGS__)
+#define LYNX_ENGINE_WARN(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_WARN,  Lynx::Logger::getEngineLogger()->warn,  __VA_ARGS__)
+#define LYNX_ENGINE_ERROR(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_ERROR, Lynx::Logger::getEngineLogger()->error, __VA_ARGS__)
