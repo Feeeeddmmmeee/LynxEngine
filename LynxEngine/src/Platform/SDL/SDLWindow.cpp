@@ -3,7 +3,7 @@
 #include "LynxEngine/Events/MouseEvents.h"
 #include "LynxEngine/Logging.h"
 
-#include "Graphics/SDL/SDLWindow.h"
+#include "Platform/SDL/SDLWindow.h"
 
 #include <SDL3/SDL.h>
 
