@@ -57,7 +57,7 @@ namespace Lynx
 	Application::~Application()
 	{
 		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
-
+// TODO delete Event pointers from the eventQueue
 		delete this->window;
 	}
 }
