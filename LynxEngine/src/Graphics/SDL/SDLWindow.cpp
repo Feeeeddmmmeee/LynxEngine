@@ -1,11 +1,11 @@
-#include "LynxEngine/Graphics/SDL/SDLWindow.h"
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Events/KeyboardEvents.h"
 #include "LynxEngine/Events/MouseEvents.h"
 #include "LynxEngine/Logging.h"
 
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_mouse.h>
+#include "Graphics/SDL/SDLWindow.h"
+
+#include <SDL3/SDL.h>
 
 // TEMPORARY !!!
 SDL_Renderer *renderer;

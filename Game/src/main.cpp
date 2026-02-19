@@ -18,24 +18,23 @@ class TestLayer : public Lynx::Layer
 
 		bool callback(Lynx::MouseButtonEvent* e)
 		{
-			LYNX_DEBUG("Interacted with {}", (int)e->getButton());
 			return 0;
 		}
 
 		void onEvent(Lynx::Event *event) override
 		{
 			Lynx::EventDispatcher d(event);
+			d.dispatch<Lynx::KeyPressedEvent>([&](Lynx::KeyEvent *e){
+					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
+					return 0;
+				});
+
 			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](Lynx::Event*){
 					int r = glm::linearRand(0, 255);
 					int g = glm::linearRand(0, 255);
 					int b = glm::linearRand(0, 255);
 					SDL_SetRenderDrawColor(renderer, r, g, b, 0);
 					return true;
-					});
-
-			d.matchAny<Lynx::KeyReleasedEvent, Lynx::KeyRepeatEvent>([&](Lynx::KeyEvent *e){
-					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
-					return 0;
 					});
 
 			d.matchAny<Lynx::MouseButtonPressedEvent, Lynx::MouseButtonReleasedEvent>([&](Lynx::MouseButtonEvent* e){return callback(e);});
