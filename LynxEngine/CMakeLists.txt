@@ -14,6 +14,8 @@ target_include_directories(${PROJECT_NAME}
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 
+target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog glm::glm)
+
 set(LYNX_WINDOW_BACKEND "SDL" CACHE STRING "Choose the window creation library (SDL)")
 
 if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
@@ -28,5 +30,3 @@ else()
 	message(FATAL_ERROR "Unknown LYNX_WINDOW_BACKEND: '${LYNX_WINDOW_BACKEND}'. Must be one of: SDL")
 
 endif()
-
-target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog glm::glm)
