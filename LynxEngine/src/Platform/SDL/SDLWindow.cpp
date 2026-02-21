@@ -104,7 +104,9 @@ namespace Lynx
 			}, 0);
 
 			LYNX_ENGINE_DEBUG("Initializing SDL...");
-			SDL_Init(SDL_INIT_VIDEO);
+			bool SDLInit = SDL_Init(SDL_INIT_VIDEO);
+			LYNX_ENGINE_ASSERT(SDLInit, "Failed to initialize SDL!");
+
 			initializedSDL = 1;
 		}
 
@@ -114,7 +116,7 @@ namespace Lynx
 
 		LYNX_ENGINE_DEBUG("Creating SDL Window...");
 		this->window = SDL_CreateWindow(spec.name.c_str(), spec.width, spec.height, flags);
-		if(this->window == NULL) LYNX_ENGINE_ERROR("Failed to create SDL Window!");
+		LYNX_ENGINE_ASSERT(this->window, "Failed to create SDL window!");
 
 		// TEMPORARY !!!
 		renderer = SDL_CreateRenderer(this->window, NULL);
