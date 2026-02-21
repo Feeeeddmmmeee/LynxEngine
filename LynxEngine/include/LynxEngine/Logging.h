@@ -56,3 +56,21 @@ namespace Lynx
 #define LYNX_ENGINE_INFO(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_INFO,  Lynx::Logger::getEngineLogger()->info,  __VA_ARGS__)
 #define LYNX_ENGINE_WARN(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_WARN,  Lynx::Logger::getEngineLogger()->warn,  __VA_ARGS__)
 #define LYNX_ENGINE_ERROR(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_ERROR, Lynx::Logger::getEngineLogger()->error, __VA_ARGS__)
+
+#ifndef LYNX_DISABLE_ASSERTS
+	#define LYNX_ASSERT(x, ...) do { \
+		if(!(x)) { \
+			LYNX_ERROR("Assertion failed! {}", __VA_ARGS__);\
+			std::exit(1); \
+		} \
+	} while(0) 
+	#define LYNX_ENGINE_ASSERT(x, ...) do { \
+		if(!(x)) { \
+			LYNX_ENGINE_ERROR("Assertion failed! {}", __VA_ARGS__);\
+			std::exit(1); \
+		} \
+	} while(0) 
+#else
+	#define LYNX_ASSERT(x, ...) (void)0
+	#define LYNX_ENGINE_ASSERT(x, ...) (void)0
+#endif
