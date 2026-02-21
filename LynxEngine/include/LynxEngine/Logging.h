@@ -57,20 +57,30 @@ namespace Lynx
 #define LYNX_ENGINE_WARN(...)  LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_WARN,  Lynx::Logger::getEngineLogger()->warn,  __VA_ARGS__)
 #define LYNX_ENGINE_ERROR(...) LYNX_LOG_INTERNAL(LYNX_ENGINE_LOG_LEVEL, LYNX_LOG_LEVEL_ERROR, Lynx::Logger::getEngineLogger()->error, __VA_ARGS__)
 
-#ifndef LYNX_DISABLE_ASSERTS
+#ifdef LYNX_DISABLE_ASSERTS
+	#define LYNX_DISABLE_CLIENT_ASSERTS
+	#define LYNX_DISABLE_ENGINE_ASSERTS
+#endif
+
+#ifndef LYNX_DISABLE_CLIENT_ASSERTS
 	#define LYNX_ASSERT(x, ...) do { \
 		if(!(x)) { \
-			LYNX_ERROR("Assertion failed! {}", __VA_ARGS__);\
-			std::exit(1); \
-		} \
-	} while(0) 
-	#define LYNX_ENGINE_ASSERT(x, ...) do { \
-		if(!(x)) { \
-			LYNX_ENGINE_ERROR("Assertion failed! {}", __VA_ARGS__);\
+			LYNX_ERROR("Assertion failed: {} at {}:{}!", #x, __FILE__, __LINE__);\
+			LYNX_ERROR(__VA_ARGS__);\
 			std::exit(1); \
 		} \
 	} while(0) 
 #else
 	#define LYNX_ASSERT(x, ...) (void)0
+#endif
+#ifndef LYNX_DISABLE_ENGINE_ASSERTS
+	#define LYNX_ENGINE_ASSERT(x, ...) do { \
+		if(!(x)) { \
+			LYNX_ENGINE_ERROR("Assertion failed: {} at {}:{}!", #x, __FILE__, __LINE__);\
+			LYNX_ENGINE_ERROR(__VA_ARGS__);\
+			std::exit(1); \
+		} \
+	} while(0) 
+#else
 	#define LYNX_ENGINE_ASSERT(x, ...) (void)0
 #endif
