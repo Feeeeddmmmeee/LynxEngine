@@ -18,9 +18,8 @@ target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog glm::glm)
 
 set(LYNX_WINDOW_BACKEND "SDL" CACHE STRING "Choose the window creation library (SDL)")
 
+message(STATUS "Using window backend: ${LYNX_WINDOW_BACKEND}")
 if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
-	message(STATUS "Using window backend: ${LYNX_WINDOW_BACKEND}")
-
 	find_package(SDL3 REQUIRED)
 	file(GLOB_RECURSE SDL_SRC src/Platform/SDL/*.cpp)
 	target_sources(${PROJECT_NAME} PRIVATE ${SDL_SRC})
