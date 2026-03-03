@@ -53,9 +53,13 @@ int main()
 ## :package: Dependencies
 | Library | Use |
 | --- | --- |
+| Vulkan | Graphics API |
+| SDL3 | Window creation, input |
+| LunarG's Vulkan SDK | Provides Vulkan validation layers and a compiler for the slang shading language (sort of optional) |
 | spdlog | Logging |
-| SDL3 | Window creation, input + probably rendering (SDL_GPU) |
-| glm (likely, not actually used yet) | Math |
+| glm | Math library |
+| stb_image | Single header image loading library |
+| tinyobjloader | Single header .obj file loader |
 
 <br>
 
