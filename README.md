@@ -14,7 +14,7 @@ A simple 2D C++ game engine.
 - [ ]  Graphics
     - [x] Window abstraction
     - [x] SDL window implementation
-    - [ ] Rendering
+    - [ ] Rendering (Loosely based on my [Vulkan learning repo](https://github.com/Feeeeddmmmeee/VulkanTesting))
 - [ ]  ECS
 - [ ]  Resource management
 - [ ]  Audio support
