@@ -8,7 +8,7 @@ A simple (mostly) 2D game engine/framework written in C++ with Vulkan
     - [x] Non blocking event queue
     - [x] Window events (WindowClose, WindowMove, WindowResize, WindowEnterFullscreen, WindowExitFullscreen, WindowEnterFocus, WindowExitFocus)
     - [x] Keyboard events (KeyPressed, KeyReleased, KeyRepeat)
-        - [x] Custom keycodes
+        - [x] Custom keycodes (Compatible with SDL3)
     - [x] Mouse events (MouseButtonPressed, MouseButtonReleased, MouseScroll, MouseMove)
 - [x] User input polling
     - [x] SDL implementation
@@ -16,8 +16,8 @@ A simple (mostly) 2D game engine/framework written in C++ with Vulkan
     - [x] Window abstraction
     - [x] SDL window implementation
     - [ ] Rendering (Loosely based on my [Vulkan learning repo](https://github.com/Feeeeddmmmeee/VulkanTesting))
-- [ ]  ECS
 - [ ]  Resource management
+- [ ]  ECS
 - [ ]  Audio support
 
 ## :rocket: Getting started
@@ -27,7 +27,7 @@ A simple (mostly) 2D game engine/framework written in C++ with Vulkan
 class MyLayer : public Lynx::Layer
 {
   public:
-    void onAttach() override
+    virtual void onAttach() override
     {
       LYNX_INFO("Hello World");
     }
