@@ -1,3 +1,7 @@
 game_ideas.md
 build
 .cache
+*.spv
+models
+materials
+textures
