@@ -40,6 +40,9 @@ namespace Lynx
 				spec.near,
 				spec.far
 			);
+
+		// otherwise it would be upside down
+		projectionMatrix[1][1] *= -1;
 	}
 
 	void PerspectiveCamera::recalculateBasis()
