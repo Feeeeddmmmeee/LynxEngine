@@ -20,6 +20,15 @@ namespace Lynx
 				}
 			}
 
+			template<typename TEvent>
+			void dispatch(std::function<bool()> callback)
+			{
+				if(this->event->getType() == TEvent::getStaticType())
+				{
+					this->event->handled = callback();
+				}
+			}
+
 			template<typename... TEvents, typename F>
 			void matchAny(F callback)
 			{

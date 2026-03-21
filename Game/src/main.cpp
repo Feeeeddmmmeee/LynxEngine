@@ -28,6 +28,13 @@ class TestLayer : public Lynx::Layer
 					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
 					return 0;
 				});
+			d.dispatch<Lynx::KeyPressedEvent>([](){
+					int r = glm::linearRand(0, 255);
+					int g = glm::linearRand(0, 255);
+					int b = glm::linearRand(0, 255);
+					SDL_SetRenderDrawColor(renderer, r, g, b, 0);
+					return true;
+						});
 
 			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](Lynx::Event*){
 					int r = glm::linearRand(0, 255);
