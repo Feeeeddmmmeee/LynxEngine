@@ -14,6 +14,8 @@ target_precompile_headers(${PROJECT_NAME}
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/LynxPch.h
 )
 
+target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/ThirdPartyImpl.cpp)
+
 target_include_directories(${PROJECT_NAME} 
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/
 	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/
@@ -25,7 +27,7 @@ set(LYNX_WINDOW_BACKEND "SDL" CACHE STRING "Choose the window creation library (
 message(STATUS "Using window backend: ${LYNX_WINDOW_BACKEND}")
 if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
 	find_package(SDL3 REQUIRED)
-	file(GLOB_RECURSE SDL_SRC src/Platform/SDL/*.cpp)
+	file(GLOB_RECURSE SDL_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/SDL/*.cpp)
 	target_sources(${PROJECT_NAME} PRIVATE ${SDL_SRC})
 	target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
 
@@ -38,7 +40,7 @@ set(LYNX_GRAPHICS_API "Vulkan" CACHE STRING "Choose the graphics API (Vulkan)")
 message(STATUS "Using graphics API: ${LYNX_GRAPHICS_API}")
 if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
 	find_package(Vulkan REQUIRED)
-	file(GLOB_RECURSE VULKAN_SRC src/Platform/Vulkan/*.cpp)
+	file(GLOB_RECURSE VULKAN_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/Platform/Vulkan/*.cpp)
 	target_sources(${PROJECT_NAME} PRIVATE ${VULKAN_SRC})
 	target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan)
 
