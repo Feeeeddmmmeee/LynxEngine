@@ -13,6 +13,27 @@ namespace Lynx
 		return std::make_shared<T>(std::forward(args)...);
 	}
 
+	template<typename T>
+	constexpr Arc<T> makeArc(T* ptr)
+	{
+		return std::shared_ptr<T>(ptr);
+	}
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T, typename ...Args>
+	constexpr Scope<T> makeScope(Args&& ...args)
+	{
+		return std::make_unique<T>(std::forward(args)...);
+	}
+
+	template<typename T>
+	constexpr Scope<T> makeScope(T* ptr)
+	{
+		return std::unique_ptr<T>(ptr);
+	}
+
 	class Vec3
 	{
 		public:
