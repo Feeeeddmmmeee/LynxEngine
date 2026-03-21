@@ -11,7 +11,7 @@ file(GLOB_RECURSE ENGINE_CORE_SRC src/LynxEngine/*.cpp)
 add_library(${PROJECT_NAME} STATIC ${ENGINE_CORE_SRC})
 
 target_precompile_headers(${PROJECT_NAME}
-	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/LynxPch.h
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/LynxPch.h
 )
 
 target_include_directories(${PROJECT_NAME} 
