@@ -34,11 +34,11 @@ namespace Lynx
 			}
 
 		protected:
-			static std::shared_ptr<spdlog::logger> createLogger(std::string name)
+			static std::shared_ptr<spdlog::logger> createLogger(std::string name, std::string pattern="%^[%Y-%m-%d %T] [%P] [%n] [%l]: %v%$")
 			{
 				auto logger = spdlog::stdout_color_mt(name);
 				logger->set_level(spdlog::level::trace);
-				logger->set_pattern("%^[%Y-%m-%d %T] [%P] [%n] [%l]: %v%$");
+				logger->set_pattern(pattern);
 				return logger;
 			}
 	};
