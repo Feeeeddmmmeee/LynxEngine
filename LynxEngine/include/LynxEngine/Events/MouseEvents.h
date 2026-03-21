@@ -3,8 +3,6 @@
 #include "LynxEngine/Events/Event.h"
 #include "LynxEngine/Input/Mousecodes.h"
 
-#include <glm/glm.hpp>
-
 namespace Lynx
 {
 	class MouseButtonEvent : public Event

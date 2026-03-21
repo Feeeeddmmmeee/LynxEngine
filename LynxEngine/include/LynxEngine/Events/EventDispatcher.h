@@ -2,8 +2,6 @@
 
 #include "LynxEngine/Events/Event.h"
 
-#include <functional>
-
 namespace Lynx
 {
 	class EventDispatcher

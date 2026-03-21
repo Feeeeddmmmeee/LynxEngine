@@ -3,8 +3,6 @@
 #include "LynxEngine/LayerStack.h"
 #include "LynxEngine/Graphics/Window.h"
 
-#include <string>
-
 namespace Lynx
 {
 	class Application

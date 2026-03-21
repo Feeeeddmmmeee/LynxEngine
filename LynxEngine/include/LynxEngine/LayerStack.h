@@ -3,12 +3,6 @@
 #include "LynxEngine/Layer.h"
 #include "LynxEngine/Logging.h"
 
-#include <memory>
-#include <utility>
-#include <vector>
-#include <queue>
-#include <functional>
-
 namespace Lynx
 {
 	class LayerStack

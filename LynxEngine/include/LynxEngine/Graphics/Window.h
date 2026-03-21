@@ -2,9 +2,6 @@
 
 #include "LynxEngine/Events/Event.h"
 
-#include <functional>
-#include <string>
-
 namespace Lynx
 {
 	struct WindowSpec

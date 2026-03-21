@@ -3,6 +3,7 @@
 #include "LynxEngine/Application.h"
 #include "LynxEngine/Logging.h"
 #include "LynxEngine/Layer.h"
+#include "LynxEngine/Core.h"
 
 // Events
 #include "LynxEngine/Events/EventDispatcher.h"

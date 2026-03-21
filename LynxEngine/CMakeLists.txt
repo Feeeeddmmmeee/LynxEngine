@@ -10,9 +10,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE ENGINE_CORE_SRC src/LynxEngine/*.cpp)
 add_library(${PROJECT_NAME} STATIC ${ENGINE_CORE_SRC})
 
+target_precompile_headers(${PROJECT_NAME}
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/LynxPch.h
+)
+
 target_include_directories(${PROJECT_NAME} 
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/
-	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+	PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/
+)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog glm::glm)
 

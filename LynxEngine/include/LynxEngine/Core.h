@@ -2,9 +2,6 @@
 
 #include <glm/glm.hpp>
 
-#include <memory>
-#include <utility>
-
 namespace Lynx
 {
 	template<typename T>

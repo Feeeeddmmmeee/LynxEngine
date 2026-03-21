@@ -2,7 +2,6 @@
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
-#include <memory>
 
 #define LYNX_LOG_LEVEL_DEBUG 0
 #define LYNX_LOG_LEVEL_INFO 1
