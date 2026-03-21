@@ -9,14 +9,11 @@ namespace Lynx
 {
 	struct WindowSpec
 	{
-		std::string name;
-		int width;
-		int height;
-		bool fullscreen;
-		bool resizable;
-
-		WindowSpec(const std::string &n="Lynx App", int w=1080, int h=720, bool f=0, bool r=1) :
-			name(n), width(w), height(h), fullscreen(f), resizable(r) {}
+		std::string name="Lynx App";
+		int width=1080;
+		int height=720;
+		bool fullscreen=false;
+		bool resizable=true;
 	};
 
 	class Window
