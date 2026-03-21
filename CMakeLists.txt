@@ -4,6 +4,7 @@ project(LynxExampleGame)
 
 # LSP support
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
 
 # All log messages
 add_compile_definitions(LYNX_ENGINE_LOG_LEVEL=0)
