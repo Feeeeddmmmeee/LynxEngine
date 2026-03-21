@@ -1,6 +1,6 @@
 #pragma once
 
-#include <utility>
+#include <glm/glm.hpp>
 
 #include "LynxEngine/Input/Mousecodes.h"
 #include "LynxEngine/Input/Keycodes.h"
@@ -12,7 +12,7 @@ namespace Lynx
 		public:
 			static bool isKeyPressed(Keycode key);
 			static bool isMouseButtonPressed(Mousecode button);
-			static std::pair<float,float> getMousePosition();
+			static glm::vec2 getMousePosition();
 			static float getMouseX();
 			static float getMouseY();
 	};

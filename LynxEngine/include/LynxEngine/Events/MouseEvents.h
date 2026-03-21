@@ -1,9 +1,9 @@
 #pragma once
 
-#include <utility>
-
 #include "LynxEngine/Events/Event.h"
 #include "LynxEngine/Input/Mousecodes.h"
+
+#include <glm/glm.hpp>
 
 namespace Lynx
 {
@@ -40,7 +40,7 @@ namespace Lynx
 			DECL_EVENT_METHODS(MouseScroll)
 
 			MouseScrollEvent(float dx, float dy) : dx(dx), dy(dy) {}
-			std::pair<float, float> getDelta() const { return std::make_pair(dx, dy); }
+			glm::vec2 getDelta() const { return glm::vec2(dx, dy); }
 			float getDeltaX() const { return dx; }
 			float getDeltaY() const { return dy; }
 
@@ -54,7 +54,7 @@ namespace Lynx
 			DECL_EVENT_METHODS(MouseMove)
 
 			MouseMoveEvent(float x, float y) : x(x), y(y) {}
-			std::pair<float, float> getPos() const { return std::make_pair(x, y); }
+			glm::vec2 getPos() const { return glm::vec2(x, y); }
 			float getX() const { return x; }
 			float getY() const { return y; }
 

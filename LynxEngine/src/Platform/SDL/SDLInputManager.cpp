@@ -17,20 +17,20 @@ namespace Lynx
 		return SDL_GetMouseState(nullptr,nullptr) & SDL_BUTTON_MASK((int)button);
 	}
 
-	std::pair<float,float> InputManager::getMousePosition()
+	glm::vec2 InputManager::getMousePosition()
 	{
-		std::pair<float, float> pos;
-		SDL_GetMouseState(&pos.first, &pos.second);
+		glm::vec2 pos;
+		SDL_GetMouseState(&pos.x, &pos.y);
 		return pos;
 	}
 
 	float InputManager::getMouseX()
 	{
-		return getMousePosition().first;
+		return getMousePosition().x;
 	}
 
 	float InputManager::getMouseY()
 	{
-		return getMousePosition().second;
+		return getMousePosition().y;
 	}
 }
