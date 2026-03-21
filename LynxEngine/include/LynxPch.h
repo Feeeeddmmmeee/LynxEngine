@@ -13,9 +13,11 @@
 #include <array>
 #include <chrono>
 
+#ifdef LYNX_VULKAN
 #define VULKAN_HPP_NO_STRUCT_CONSTRUCTORS
 #include <vulkan/vulkan.hpp>
 #include <vulkan/vulkan_raii.hpp>
+#endif
 
 #include <stb/stb_image.h>
 #include <tiny_obj_loader.h>
