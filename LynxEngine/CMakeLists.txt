@@ -17,7 +17,6 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog glm::glm)
 
 set(LYNX_WINDOW_BACKEND "SDL" CACHE STRING "Choose the window creation library (SDL)")
-
 message(STATUS "Using window backend: ${LYNX_WINDOW_BACKEND}")
 if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
 	find_package(SDL3 REQUIRED)
@@ -27,5 +26,18 @@ if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
 
 else()
 	message(FATAL_ERROR "Unknown LYNX_WINDOW_BACKEND: '${LYNX_WINDOW_BACKEND}'. Must be one of: SDL")
+
+endif()
+
+set(LYNX_GRAPHICS_API "Vulkan" CACHE STRING "Choose the graphics API (Vulkan)")
+message(STATUS "Using graphics API: ${LYNX_GRAPHICS_API}")
+if(LYNX_WINDOW_BACKEND STREQUAL "SDL")
+	find_package(Vulkan REQUIRED)
+	file(GLOB_RECURSE VULKAN_SRC src/Platform/Vulkan/*.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${VULKAN_SRC})
+	target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan)
+
+else()
+	message(FATAL_ERROR "Unknown LYNX_GRAPHICS_API: '${LYNX_GRAPHICS_API}'. Must be one of: Vulkan")
 
 endif()
