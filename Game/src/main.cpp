@@ -3,22 +3,23 @@
 #include <SDL3/SDL.h>
 #include <glm/gtc/random.hpp>
 
-// TEMPORARY !!!
-extern SDL_Renderer *renderer;
-
 class TestLayer : public Lynx::Layer
 {
 	public:
-		TestLayer(Lynx::Application *app) : app(app) {}
+		TestLayer(Lynx::Application *app) 
+			: app(app) , cam({.width = 1080, .height =  720})
+		{}
+
 		void onAttach() override
 		{
 			LYNX_DEBUG("Test layer attached...");
-			SDL_SetRenderDrawColor(renderer, 0x0d, 0x2b, 0x45, 0);
 		}
 
-		bool callback(Lynx::MouseButtonEvent* e)
+		void onUpdate() override
 		{
-			return 0;
+			Lynx::Renderer::beginScene(cam);
+			Lynx::Renderer::submit();
+			Lynx::Renderer::endScene();
 		}
 
 		void onEvent(Lynx::Event *event) override
@@ -28,25 +29,9 @@ class TestLayer : public Lynx::Layer
 					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
 					return 0;
 				});
-			d.dispatch<Lynx::KeyPressedEvent>([](){
-					int r = glm::linearRand(0, 255);
-					int g = glm::linearRand(0, 255);
-					int b = glm::linearRand(0, 255);
-					SDL_SetRenderDrawColor(renderer, r, g, b, 0);
-					return true;
-						});
-
-			d.matchAny<Lynx::WindowEnterFocusEvent, Lynx::WindowExitFocusEvent>([](Lynx::Event*){
-					int r = glm::linearRand(0, 255);
-					int g = glm::linearRand(0, 255);
-					int b = glm::linearRand(0, 255);
-					SDL_SetRenderDrawColor(renderer, r, g, b, 0);
-					return true;
-					});
-
-			d.matchAny<Lynx::MouseButtonPressedEvent, Lynx::MouseButtonReleasedEvent>([&](Lynx::MouseButtonEvent* e){return callback(e);});
 		}
 	private:
+		Lynx::PerspectiveCamera cam;
 		Lynx::Application *app;
 };
 

@@ -2,6 +2,7 @@
 #include "LynxEngine/Events/EventDispatcher.h"
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Logging.h"
+#include "LynxEngine/Graphics/Renderer/Renderer.h"
 
 namespace Lynx
 {
@@ -51,12 +52,16 @@ namespace Lynx
 				this->queueEvent(e);
 		});
 
+		Renderer::init(window);
+
 		this->running = 1;
 	}
 
 	Application::~Application()
 	{
 		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
+		Renderer::cleanup();
+
 		delete this->window;
 		while(!this->eventQueue.empty())
 		{

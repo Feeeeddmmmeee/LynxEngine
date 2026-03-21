@@ -4,6 +4,12 @@
 #include "LynxEngine/Logging.h"
 #include "LynxEngine/Layer.h"
 #include "LynxEngine/Core.h"
+#include "LynxEngine/Graphics/PerspectiveCamera.h"
+#include "LynxEngine/Graphics/Window.h"
+
+// Renderer
+#include "LynxEngine/Graphics/Renderer/Renderer.h"
+#include "LynxEngine/Graphics/Renderer/RenderCommand.h"
 
 // Events
 #include "LynxEngine/Events/EventDispatcher.h"

@@ -23,6 +23,13 @@ namespace Lynx
 			virtual void setFullscreen(bool fullscreen) = 0;
 			virtual void setResizable(bool resizable) = 0;
 			virtual void setTitle(std::string name) = 0;
+			virtual glm::vec2 getSize() = 0;
+
+			// temporary?
+#ifdef LYNX_VULKAN
+			static const char* const* getInstanceExtensions(uint32_t *count);
+			virtual void createVulkanSurface(VkInstance instance, VkSurfaceKHR *surface) = 0;
+#endif
 
 			const WindowSpec &getWinSpec() { return this->spec; }
 
