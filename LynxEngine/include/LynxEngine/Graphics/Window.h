@@ -11,6 +11,7 @@ namespace Lynx
 		int height=720;
 		bool fullscreen=false;
 		bool resizable=true;
+		bool showMouse=true;
 	};
 
 	class Window

@@ -153,6 +153,12 @@ namespace Lynx
 		LYNX_ENGINE_DEBUG("Creating SDL Window...");
 		this->window = SDL_CreateWindow(spec.name.c_str(), spec.width, spec.height, flags);
 		LYNX_ENGINE_ASSERT(this->window, "Failed to create SDL window!");
+
+		if(!spec.showMouse)
+		{
+			SDL_SetWindowRelativeMouseMode(window, true);
+			SDL_HideCursor();
+		}
 	}
 
 	SDLWindow::~SDLWindow()
