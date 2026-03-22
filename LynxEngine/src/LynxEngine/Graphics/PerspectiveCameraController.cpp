@@ -6,7 +6,7 @@
 
 namespace Lynx
 {
-	PerspectiveCameraController::PerspectiveCameraController(PerspectiveCameraSpec spec)
+	PerspectiveCameraController::PerspectiveCameraController(const PerspectiveCameraSpec &spec)
 		: camera(spec)
 	{
 	}

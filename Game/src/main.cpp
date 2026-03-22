@@ -6,7 +6,7 @@ class TestLayer : public Lynx::Layer
 {
 	public:
 		TestLayer(Lynx::Application *app) 
-			: app(app) , cam({.width = 1080, .height =  720})
+			: app(app)
 		{}
 
 		void onAttach() override

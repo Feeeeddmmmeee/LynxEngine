@@ -7,8 +7,8 @@ namespace Lynx
 {
 	struct PerspectiveCameraSpec
 	{
-		float width;
-		float height;
+		float width = 1080;
+		float height = 720;
 		float fov = 45.0f;
 		glm::vec3 pos = {0,0,0};
 		float near = .01f;
@@ -20,7 +20,7 @@ namespace Lynx
 	class PerspectiveCamera : public Camera
 	{
 		public:
-			PerspectiveCamera(const PerspectiveCameraSpec &spec);
+			PerspectiveCamera(const PerspectiveCameraSpec &spec = PerspectiveCameraSpec());
 
 			inline const glm::vec3 &getPosition() const { return spec.pos; }
 			void setPosition(const glm::vec3 &pos);

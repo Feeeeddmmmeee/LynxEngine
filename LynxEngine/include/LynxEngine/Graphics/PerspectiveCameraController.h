@@ -8,7 +8,7 @@ namespace Lynx
 	class PerspectiveCameraController
 	{
 		public:
-			PerspectiveCameraController(PerspectiveCameraSpec spec);
+			PerspectiveCameraController(const PerspectiveCameraSpec &spec = PerspectiveCameraSpec());
 
 			void onUpdate();
 			void onEvent(Event *event);
