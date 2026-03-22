@@ -18,23 +18,25 @@ namespace Lynx
 		{
 			camera.setPosition(camera.getPosition() + camera.getFront() * movementSpeed);
 		}
-		if(InputManager::isKeyPressed(Keycode::S))
+		else if(InputManager::isKeyPressed(Keycode::S))
 		{
 			camera.setPosition(camera.getPosition() - camera.getFront() * movementSpeed);
 		}
+
 		if(InputManager::isKeyPressed(Keycode::D))
 		{
 			camera.setPosition(camera.getPosition() + camera.getRight() * movementSpeed);
 		}
-		if(InputManager::isKeyPressed(Keycode::A))
+		else if(InputManager::isKeyPressed(Keycode::A))
 		{
 			camera.setPosition(camera.getPosition() - camera.getRight() * movementSpeed);
 		}
+
 		if(InputManager::isKeyPressed(Keycode::SPACE))
 		{
 			camera.setPosition(camera.getPosition() + camera.getUp() * movementSpeed);
 		}
-		if(InputManager::isKeyPressed(Keycode::LCTRL))
+		else if(InputManager::isKeyPressed(Keycode::LCTRL))
 		{
 			camera.setPosition(camera.getPosition() - camera.getUp() * movementSpeed);
 		}
