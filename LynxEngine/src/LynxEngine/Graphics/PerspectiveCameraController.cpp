@@ -48,8 +48,6 @@ namespace Lynx
 				auto delta = e->getDelta() * mouseSpeed;
 				auto newRot = camera.getRotation();
 
-				LYNX_ENGINE_INFO("{}, {}", delta.x, delta.y);
-
 				newRot.y -= delta.x;
 				newRot.x -= delta.y;
 
