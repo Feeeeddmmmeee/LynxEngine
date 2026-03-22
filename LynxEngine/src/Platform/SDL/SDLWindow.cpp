@@ -35,7 +35,6 @@ namespace Lynx
 
 	void SDLWindow::createVulkanSurface(VkInstance instance, VkSurfaceKHR *surface)
 	{
-		LYNX_ENGINE_DEBUG("TROL");
 		bool success = SDL_Vulkan_CreateSurface(this->window, instance, nullptr, surface);
 		LYNX_ENGINE_ASSERT(success, "Failed to create Vulkan surface!");
 	}
