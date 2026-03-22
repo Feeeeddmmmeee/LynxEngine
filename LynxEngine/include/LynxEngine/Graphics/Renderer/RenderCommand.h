@@ -18,6 +18,11 @@ namespace Lynx
 				rendererAPI->draw();
 			}
 
+			inline static void setCamera(Camera &cam)
+			{
+				rendererAPI->setCamera(cam);
+			}
+
 			inline static void cleanup()
 			{
 				rendererAPI->cleanup();

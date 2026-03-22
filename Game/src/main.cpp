@@ -1,6 +1,5 @@
 #include <LynxEngine.h>
 
-#include <SDL3/SDL.h>
 #include <glm/gtc/random.hpp>
 
 class TestLayer : public Lynx::Layer

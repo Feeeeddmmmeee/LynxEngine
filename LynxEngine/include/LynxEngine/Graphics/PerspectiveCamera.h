@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LynxEngine/Core.h"
+#include "LynxEngine/Graphics/Camera.h"
 
 namespace Lynx
 {
@@ -16,7 +17,7 @@ namespace Lynx
 		float yaw = 0;
 	};
 
-	class PerspectiveCamera
+	class PerspectiveCamera : public Camera
 	{
 		public:
 			PerspectiveCamera(const PerspectiveCameraSpec &spec);

@@ -8,8 +8,9 @@ namespace Lynx
 		RenderCommand::init(window);
 	}
 
-	void Renderer::beginScene(PerspectiveCamera &camera)
+	void Renderer::beginScene(Camera &camera)
 	{
+		RenderCommand::setCamera(camera);
 	}
 
 	void Renderer::submit()

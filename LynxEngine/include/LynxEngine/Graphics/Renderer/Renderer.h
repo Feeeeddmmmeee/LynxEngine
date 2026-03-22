@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LynxEngine/Graphics/PerspectiveCamera.h"
+#include "LynxEngine/Graphics/Camera.h"
 #include "LynxEngine/Graphics/Window.h"
 
 namespace Lynx
@@ -9,7 +9,7 @@ namespace Lynx
 	{
 		public:
 			static void init(Window *window);
-			static void beginScene(PerspectiveCamera &camera);
+			static void beginScene(Camera &camera);
 			static void submit();
 			static void endScene();
 			static void cleanup();

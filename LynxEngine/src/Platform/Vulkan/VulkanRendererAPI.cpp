@@ -24,7 +24,6 @@ namespace Lynx
 		createCommandPool();
 		createColorResources();
 		createDepthResources();
-		setupCamera();
 		setupObjects();
 		createUniformBuffers();
 		createDescPool();
@@ -42,7 +41,11 @@ namespace Lynx
 		createSwapchainImageViews();
 		createColorResources();
 		createDepthResources();
-		updateCamera();
+	}
+
+	void VulkanRendererAPI::setCamera(Camera &cam)
+	{
+		this->camera = &cam;
 	}
 
 

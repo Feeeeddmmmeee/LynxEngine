@@ -2,6 +2,7 @@
 
 #include "LynxEngine/Graphics/Renderer/RendererAPI.h"
 #include "LynxEngine/Graphics/Window.h"
+#include "LynxEngine/Graphics/Camera.h"
 
 #include "./Buffer.h"
 #include "./Models.h"
@@ -9,7 +10,6 @@
 // #include "./Shader.h"
 #include "./Texture.h"
 #include "./Vertex.h"
-#include "./Camera.h"
 #include "LynxEngine/Logging.h"
 
 #ifdef LYNX_ENABLE_VULKAN_VALIDATION_LAYERS
@@ -74,6 +74,7 @@ namespace Lynx
 
 			virtual void init(Window *window) override;
 			virtual void draw() override;
+			virtual void setCamera(Camera &cam) override;
 			virtual void cleanup() override;
 			virtual void recreateSwapchain() override;
 
@@ -109,13 +110,13 @@ namespace Lynx
 
 			VulkanImage depthImage;
 
-			std::unique_ptr<Camera> camera;
 			std::unique_ptr<PipelineManager> pipelineManager;
 
 			VulkanImage colorImage;
 			vk::SampleCountFlagBits msaaSamples = vk::SampleCountFlagBits::e1;
 
 			Window *window;
+			Camera *camera;
 
 			vk::SampleCountFlagBits getMaxUsableSampleCount()
 			{
@@ -220,16 +221,7 @@ namespace Lynx
 						);
 			}
 
-			void updateCamera()
-			{
-				camera->height = swapchainExtent.height;
-				camera->width = swapchainExtent.width;
-			}
-
-			void setupCamera()
-			{
-				camera = std::make_unique<Camera>(swapchainExtent.width, swapchainExtent.height, 45.0f, glm::vec3{-1.85, 0.08, 0.24}, glm::vec3{0.9f, -0.1f, 0.2f});
-			}
+			// camera = std::make_unique<Camera>(swapchainExtent.width, swapchainExtent.height, 45.0f, glm::vec3{-1.85, 0.08, 0.24}, glm::vec3{0.9f, -0.1f, 0.2f});
 
 			void createMeshIndexBuffer(Mesh &mesh, std::vector<uint32_t> &indices)
 			{
@@ -637,7 +629,7 @@ namespace Lynx
 				descPool = vk::raii::DescriptorPool(device, poolInfo);
 			}
 
-			void updateUniformBuffer(uint32_t currentImage)
+			void updateUniformBuffer(uint32_t currentImage, const glm::mat4 &view, const glm::mat4 &proj)
 			{
 				static auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -649,8 +641,8 @@ namespace Lynx
 					// object.rotation.z += 0.00005f;
 					UniformBufferObject ubo {
 						.model = object.getModelMatrix(),
-							.view = camera->getViewMatrix(),
-							.proj = camera->getProjMatrix()
+							.view = view,
+							.proj = proj
 					};
 					object.uniformBuffers[currentImage]->uploadToMemory(&ubo);
 				}
@@ -735,7 +727,7 @@ namespace Lynx
 					throw std::runtime_error("Failed to acquire swapchain image!");
 				}
 
-				updateUniformBuffer(frameIndex);
+				updateUniformBuffer(frameIndex, camera->getViewMatrix(), camera->getProjectionMatrix());
 
 				// Make sure to only reset the fence if we are actually rendering
 				device.resetFences(*drawF[frameIndex]);
