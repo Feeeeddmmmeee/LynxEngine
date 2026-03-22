@@ -23,6 +23,8 @@ namespace Lynx
 			virtual void update() = 0;
 			virtual void setFullscreen(bool fullscreen) = 0;
 			virtual void setResizable(bool resizable) = 0;
+			virtual void setMouseVisibility(bool show) = 0;
+			virtual void toggleMouseVisibility() = 0;
 			virtual void setTitle(std::string name) = 0;
 			virtual glm::vec2 getSize() = 0;
 			virtual glm::vec2 getFramebufferSize() = 0;

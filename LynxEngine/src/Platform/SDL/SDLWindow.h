@@ -17,6 +17,8 @@ namespace Lynx
 			void setEventCallback(std::function<void(Lynx::Event*)> callback) override;
 			void setFullscreen(bool fullscreen) override;
 			void setResizable(bool resizable) override;
+			void setMouseVisibility(bool show) override;
+			void toggleMouseVisibility() override;
 			glm::vec2 getSize() override;
 			glm::vec2 getFramebufferSize() override;
 			void setTitle(std::string name) override;

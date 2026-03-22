@@ -160,6 +160,26 @@ namespace Lynx
 			SDL_HideCursor();
 		}
 	}
+	void SDLWindow::setMouseVisibility(bool show)
+	{
+		if(show)
+		{
+			SDL_SetWindowRelativeMouseMode(window, false);
+			SDL_ShowCursor();
+			spec.showMouse = true;
+		}
+		else
+		{
+			SDL_SetWindowRelativeMouseMode(window, true);
+			SDL_HideCursor();
+			spec.showMouse = false;
+		}
+	}
+
+	void SDLWindow::toggleMouseVisibility()
+	{
+		setMouseVisibility(!spec.showMouse);
+	}
 
 	SDLWindow::~SDLWindow()
 	{
