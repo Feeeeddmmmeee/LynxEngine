@@ -4,9 +4,11 @@
 #include "LynxEngine/Logging.h"
 #include "LynxEngine/Layer.h"
 #include "LynxEngine/Core.h"
+
+// Graphics
+#include "LynxEngine/Graphics/Window.h"
 #include "LynxEngine/Graphics/PerspectiveCamera.h"
 #include "LynxEngine/Graphics/PerspectiveCameraController.h"
-#include "LynxEngine/Graphics/Window.h"
 
 // Renderer
 #include "LynxEngine/Graphics/Renderer/Renderer.h"

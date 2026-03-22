@@ -1,7 +1,5 @@
 #include <LynxEngine.h>
 
-#include <glm/gtc/random.hpp>
-
 class TestLayer : public Lynx::Layer
 {
 	public:
