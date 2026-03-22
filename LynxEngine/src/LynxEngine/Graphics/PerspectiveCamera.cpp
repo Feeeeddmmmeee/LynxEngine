@@ -33,6 +33,13 @@ namespace Lynx
 		recalculateProjectionMatrix();
 	}
 
+	void PerspectiveCamera::setFov(float fov)
+	{
+		spec.fov = fov;
+
+		recalculateProjectionMatrix();
+	}
+
 	void PerspectiveCamera::recalculateViewMatrix()
 	{
 		recalculateBasis();
