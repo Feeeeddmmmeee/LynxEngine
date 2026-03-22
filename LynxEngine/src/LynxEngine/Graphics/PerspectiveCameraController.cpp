@@ -58,7 +58,8 @@ namespace Lynx
 
 		dispatcher.dispatch<MouseScrollEvent>([this](MouseScrollEvent *e){
 				float fov = this->camera.getFov();
-				fov += e->getDeltaY() * zoomSpeed;
+				fov -= e->getDeltaY() * zoomSpeed;
+				this->camera.setFov(fov);
 				return 0;
 			});
 

@@ -17,8 +17,8 @@ namespace Lynx
 		private:
 			PerspectiveCamera camera;
 
-			float zoomSpeed = 0.0005f;
-			float movementSpeed = 0.0005f;
+			float zoomSpeed = 1.0f;
+			float movementSpeed = 0.0007f;
 			float mouseSpeed = 0.1f;
 	};
 }
