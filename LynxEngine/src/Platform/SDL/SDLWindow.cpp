@@ -20,6 +20,13 @@ namespace Lynx
 		return new SDLWindow(spec);
 	}
 
+	glm::vec2 SDLWindow::getFramebufferSize()
+	{
+		int w, h;
+		SDL_GetWindowSizeInPixels(window, &w, &h);
+		return glm::vec2{w,h};
+	}
+
 #ifdef LYNX_VULKAN
 	const char* const* Window::getInstanceExtensions(uint32_t *count)
 	{

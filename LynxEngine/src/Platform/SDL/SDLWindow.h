@@ -18,6 +18,7 @@ namespace Lynx
 			void setFullscreen(bool fullscreen) override;
 			void setResizable(bool resizable) override;
 			glm::vec2 getSize() override;
+			glm::vec2 getFramebufferSize() override;
 			void setTitle(std::string name) override;
 
 #ifdef LYNX_VULKAN

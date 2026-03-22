@@ -24,6 +24,7 @@ namespace Lynx
 			virtual void setResizable(bool resizable) = 0;
 			virtual void setTitle(std::string name) = 0;
 			virtual glm::vec2 getSize() = 0;
+			virtual glm::vec2 getFramebufferSize() = 0;
 
 			// temporary?
 #ifdef LYNX_VULKAN

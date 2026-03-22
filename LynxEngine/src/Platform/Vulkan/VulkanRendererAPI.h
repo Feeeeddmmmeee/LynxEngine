@@ -1011,7 +1011,7 @@ namespace Lynx
 				if(cap.currentExtent.width != std::numeric_limits<uint32_t>::max() && cap.currentExtent.height != std::numeric_limits<uint32_t>::max())
 					return cap.currentExtent;
 
-				auto size = window->getSize();
+				auto size = window->getFramebufferSize();
 
 				return {
 					std::clamp<uint32_t>(size.x, cap.minImageExtent.width, cap.maxImageExtent.width),
