@@ -3,7 +3,6 @@
 #include "LynxEngine/Events/MouseEvents.h"
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Input/InputManager.h"
-#include "LynxEngine/Logging.h"
 
 namespace Lynx
 {
