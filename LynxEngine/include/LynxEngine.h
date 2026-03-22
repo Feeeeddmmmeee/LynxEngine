@@ -5,6 +5,7 @@
 #include "LynxEngine/Layer.h"
 #include "LynxEngine/Core.h"
 #include "LynxEngine/Graphics/PerspectiveCamera.h"
+#include "LynxEngine/Graphics/PerspectiveCameraController.h"
 #include "LynxEngine/Graphics/Window.h"
 
 // Renderer

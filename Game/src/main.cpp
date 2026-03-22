@@ -16,13 +16,16 @@ class TestLayer : public Lynx::Layer
 
 		void onUpdate() override
 		{
-			Lynx::Renderer::beginScene(cam);
+			cam.onUpdate();
+
+			Lynx::Renderer::beginScene(cam.getCamera());
 			Lynx::Renderer::submit();
 			Lynx::Renderer::endScene();
 		}
 
 		void onEvent(Lynx::Event *event) override
 		{
+			cam.onEvent(event);
 			Lynx::EventDispatcher d(event);
 			d.dispatch<Lynx::KeyPressedEvent>([&](Lynx::KeyEvent *e){
 					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
@@ -30,7 +33,7 @@ class TestLayer : public Lynx::Layer
 				});
 		}
 	private:
-		Lynx::PerspectiveCamera cam;
+		Lynx::PerspectiveCameraController cam;
 		Lynx::Application *app;
 };
 
