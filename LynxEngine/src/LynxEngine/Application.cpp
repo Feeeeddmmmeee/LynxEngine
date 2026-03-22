@@ -1,6 +1,7 @@
 #include "LynxEngine/Application.h"
 #include "LynxEngine/Events/EventDispatcher.h"
 #include "LynxEngine/Events/WindowEvents.h"
+#include "LynxEngine/Events/KeyboardEvents.h"
 #include "LynxEngine/Logging.h"
 #include "LynxEngine/Graphics/Renderer/Renderer.h"
 #include "LynxEngine/Graphics/Renderer/RenderCommand.h"
@@ -32,6 +33,11 @@ namespace Lynx
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
 			dispatcher.dispatch<WindowCloseEvent>([this](){ this->close(); return 0; });
 			dispatcher.dispatch<WindowResizeEvent>([this](){ RenderCommand::recreateSwapchain(); return 0; });
+			dispatcher.dispatch<KeyPressedEvent>([this](KeyPressedEvent *e){
+					if(e->getKey() == Keycode::ESCAPE)
+						window->toggleMouseVisibility();
+					return 0;
+				});
 
 			this->layerStack.handleEvent(event);
 			delete event;
