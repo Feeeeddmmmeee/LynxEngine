@@ -52,9 +52,9 @@ namespace Lynx
 			DECL_EVENT_METHODS(MouseMove)
 
 			MouseMoveEvent(float x, float y) : x(x), y(y) {}
-			glm::vec2 getPos() const { return glm::vec2(x, y); }
-			float getX() const { return x; }
-			float getY() const { return y; }
+			glm::vec2 getDelta() const { return glm::vec2(x, y); }
+			float getDeltaX() const { return x; }
+			float getDeltaY() const { return y; }
 
 		private:
 			float x, y;
