@@ -52,6 +52,7 @@ int main()
 | LYNX_DISABLE_CLIENT_ASSERTS | Disables client asserts if defined | Undefined |
 | LYNX_DISABLE_ENGINE_ASSERTS | Disabled engine asserts | Undefined |
 | LYNX_DISABLE_ASSERTS | Defines the engine and client disable asserts macros | Undefined |
+| LYNX_DISABLE_VULKAN_VALIDATION_LAYERS | Disables Vulkan validation layers | Undefined |
 
 ## :package: Dependencies
 | Library | Use |

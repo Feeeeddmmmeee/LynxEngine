@@ -12,7 +12,7 @@
 #include "./Vertex.h"
 #include "LynxEngine/Logging.h"
 
-#ifdef LYNX_ENABLE_VULKAN_VALIDATION_LAYERS
+#ifndef LYNX_DISABLE_VULKAN_VALIDATION_LAYERS
 constexpr bool _ENABLE_VALIDATION_LAYERS = true;
 #else
 constexpr bool _ENABLE_VALIDATION_LAYERS = false;
