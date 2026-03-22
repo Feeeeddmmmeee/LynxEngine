@@ -3,4 +3,4 @@
 cmake -B build || exit 1 
 make -C build/ || exit 1
 
-./build/Game/Game
+mangohud ./build/Game/Game
