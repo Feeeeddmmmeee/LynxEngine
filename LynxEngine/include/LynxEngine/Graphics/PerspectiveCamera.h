@@ -28,6 +28,9 @@ namespace Lynx
 			inline glm::vec2 getRotation() const { return glm::vec2(spec.pitch, spec.yaw); }
 			void setRotation(const glm::vec2 &rotation);
 
+			inline glm::vec2 getDimensions() const { return glm::vec2(spec.pitch, spec.yaw); }
+			void setDimensions(const glm::vec2 &dimensions);
+
 			inline const glm::mat4 &getViewMatrix() const { return viewMatrix; }
 			inline const glm::mat4 &getProjectionMatrix() const { return projectionMatrix; }
 

@@ -15,14 +15,22 @@ namespace Lynx
 		recalculateViewMatrix();
 	}
 
-	void PerspectiveCamera::setRotation(const glm::vec2 &pos)
+	void PerspectiveCamera::setRotation(const glm::vec2 &rotation)
 	{
-		spec.pitch = pos.x;
+		spec.pitch = rotation.x;
 		spec.pitch = glm::clamp(spec.pitch, -89.0f, 89.0f);
 
-		spec.yaw = pos.y;
+		spec.yaw = rotation.y;
 
 		recalculateViewMatrix();
+	}
+
+	void PerspectiveCamera::setDimensions(const glm::vec2 &dimensions)
+	{
+		spec.width = dimensions.x;
+		spec.height = dimensions.y;
+
+		recalculateProjectionMatrix();
 	}
 
 	void PerspectiveCamera::recalculateViewMatrix()
