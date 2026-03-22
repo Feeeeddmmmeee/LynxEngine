@@ -33,6 +33,27 @@ namespace Lynx
 		createSyncObjects();
 	}
 
+	void VulkanRendererAPI::recreateSwapchain()
+	{
+		// auto [w, h] = window->getFrameBufferSize();
+		// while(w==0 || h==0)
+		// {
+		// 	auto [tw, th] = window->getFrameBufferSize();
+		// 	w=tw; h=th;
+		// 	window->pollEvents();
+		// }
+		//
+		device.waitIdle();
+
+		cleanupSwapchain();
+		createSwapchain();
+		createSwapchainImageViews();
+		createColorResources();
+		createDepthResources();
+		updateCamera();
+	}
+
+
 	void VulkanRendererAPI::draw()
 	{
 		drawFrame();

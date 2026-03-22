@@ -75,6 +75,7 @@ namespace Lynx
 			virtual void init(Window *window) override;
 			virtual void draw() override;
 			virtual void cleanup() override;
+			virtual void recreateSwapchain() override;
 
 		private:
 			vk::raii::Context context;
@@ -107,8 +108,6 @@ namespace Lynx
 			uint32_t frameIndex = 0;
 
 			VulkanImage depthImage;
-
-			bool frameBufferResized = false;
 
 			std::unique_ptr<Camera> camera;
 			std::unique_ptr<PipelineManager> pipelineManager;
@@ -713,26 +712,6 @@ namespace Lynx
 				swapchain = nullptr;
 			}
 
-			void recreateSwapchain()
-			{
-				// auto [w, h] = window->getFrameBufferSize();
-				// while(w==0 || h==0)
-				// {
-				// 	auto [tw, th] = window->getFrameBufferSize();
-				// 	w=tw; h=th;
-				// 	window->pollEvents();
-				// }
-				//
-				device.waitIdle();
-
-				cleanupSwapchain();
-				createSwapchain();
-				createSwapchainImageViews();
-				createColorResources();
-				createDepthResources();
-				updateCamera();
-			}
-
 			void drawFrame()
 			{
 				// wait for previous frame to finish
@@ -786,9 +765,8 @@ namespace Lynx
 				};
 
 				auto result = presentQueue.presentKHR(presentInfo);
-				if(result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR || frameBufferResized)
+				if(result == vk::Result::eErrorOutOfDateKHR || result == vk::Result::eSuboptimalKHR)
 				{
-					frameBufferResized = false;
 					recreateSwapchain();
 				}
 				else if (result != vk::Result::eSuccess)

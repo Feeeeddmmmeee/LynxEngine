@@ -23,6 +23,10 @@ namespace Lynx
 				rendererAPI->cleanup();
 			}
 
+			inline static void recreateSwapchain()
+			{
+				rendererAPI->recreateSwapchain();
+			}
 		private:
 			static Scope<RendererAPI> rendererAPI;
 	};
