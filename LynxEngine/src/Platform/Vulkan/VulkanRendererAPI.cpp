@@ -56,6 +56,7 @@ namespace Lynx
 
 	void VulkanRendererAPI::cleanup()
 	{
+		device.waitIdle();
 		cleanupSwapchain();
 	}
 

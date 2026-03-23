@@ -26,6 +26,7 @@ namespace Lynx
 			inline static void cleanup()
 			{
 				rendererAPI->cleanup();
+				delete rendererAPI;
 			}
 
 			inline static void recreateSwapchain()
@@ -33,6 +34,6 @@ namespace Lynx
 				rendererAPI->recreateSwapchain();
 			}
 		private:
-			static Scope<RendererAPI> rendererAPI;
+			static RendererAPI *rendererAPI;
 	};
 }

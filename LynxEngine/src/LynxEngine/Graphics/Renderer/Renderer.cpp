@@ -24,5 +24,6 @@ namespace Lynx
 
 	void Renderer::cleanup()
 	{
+		RenderCommand::cleanup();
 	}
 }
