@@ -2,12 +2,12 @@
 
 namespace Lynx
 {
-	void LayerStack::updateLayers()
+	void LayerStack::updateLayers(Timestep dt)
 	{
 		this->processOperations();
 		for(auto &layer : this->layers)
 		{
-			layer->onUpdate();
+			layer->onUpdate(dt);
 		}
 	}
 

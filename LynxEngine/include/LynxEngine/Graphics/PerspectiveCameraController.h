@@ -2,6 +2,7 @@
 
 #include "LynxEngine/Graphics/PerspectiveCamera.h"
 #include "LynxEngine/Events/Event.h"
+#include "LynxEngine/Time.h"
 
 namespace Lynx
 {
@@ -10,7 +11,7 @@ namespace Lynx
 		public:
 			PerspectiveCameraController(const PerspectiveCameraSpec &spec = PerspectiveCameraSpec());
 
-			void onUpdate();
+			void onUpdate(Timestep dt);
 			void onEvent(Event *event);
 			Camera &getCamera() { return camera; }
 
@@ -18,7 +19,8 @@ namespace Lynx
 			PerspectiveCamera camera;
 
 			float zoomSpeed = 1.0f;
-			float movementSpeed = 0.0007f;
+			float movementSpeed = 1.0f;
+			float shiftMult = 3.0f;
 			float mouseSpeed = 0.1f;
 	};
 }

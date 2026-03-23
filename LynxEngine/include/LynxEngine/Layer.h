@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LynxEngine/Events/Event.h"
+#include "LynxEngine/Time.h"
 
 namespace Lynx
 {
@@ -11,7 +12,7 @@ namespace Lynx
 			virtual ~Layer() = default;
 
 			virtual void onAttach() {};
-			virtual void onUpdate() {};
+			virtual void onUpdate(Timestep dt) {};
 			virtual void onEvent(Lynx::Event *event) {};
 			virtual void onDetach() {};
 

@@ -2,6 +2,7 @@
 
 #include "LynxEngine/LayerStack.h"
 #include "LynxEngine/Graphics/Window.h"
+#include "LynxEngine/Time.h"
 
 namespace Lynx
 {
@@ -26,8 +27,9 @@ namespace Lynx
 		private:
 			bool running = 0;
 			std::queue<Lynx::Event*> eventQueue;
-			Lynx::LayerStack layerStack;
-			Lynx::Window *window;
+			LayerStack layerStack;
+			Window *window;
+			Clock clock;
 
 			void handleEvents();
 

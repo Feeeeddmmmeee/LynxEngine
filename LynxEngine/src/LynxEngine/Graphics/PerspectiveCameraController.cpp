@@ -11,33 +11,37 @@ namespace Lynx
 	{
 	}
 
-	void PerspectiveCameraController::onUpdate()
+	void PerspectiveCameraController::onUpdate(Timestep dt)
 	{
+		float mult = movementSpeed * dt;
+		if(InputManager::isKeyPressed(Keycode::LSHIFT))
+			mult *= shiftMult;
+
 		if(InputManager::isKeyPressed(Keycode::W))
 		{
-			camera.setPosition(camera.getPosition() + camera.getFront() * movementSpeed);
+			camera.setPosition(camera.getPosition() + camera.getFront() * mult);
 		}
 		else if(InputManager::isKeyPressed(Keycode::S))
 		{
-			camera.setPosition(camera.getPosition() - camera.getFront() * movementSpeed);
+			camera.setPosition(camera.getPosition() - camera.getFront() * mult);
 		}
 
 		if(InputManager::isKeyPressed(Keycode::D))
 		{
-			camera.setPosition(camera.getPosition() + camera.getRight() * movementSpeed);
+			camera.setPosition(camera.getPosition() + camera.getRight() * mult);
 		}
 		else if(InputManager::isKeyPressed(Keycode::A))
 		{
-			camera.setPosition(camera.getPosition() - camera.getRight() * movementSpeed);
+			camera.setPosition(camera.getPosition() - camera.getRight() * mult);
 		}
 
 		if(InputManager::isKeyPressed(Keycode::SPACE))
 		{
-			camera.setPosition(camera.getPosition() + camera.getUp() * movementSpeed);
+			camera.setPosition(camera.getPosition() + camera.getUp() * mult);
 		}
 		else if(InputManager::isKeyPressed(Keycode::LCTRL))
 		{
-			camera.setPosition(camera.getPosition() - camera.getUp() * movementSpeed);
+			camera.setPosition(camera.getPosition() - camera.getUp() * mult);
 		}
 	}
 

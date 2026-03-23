@@ -12,9 +12,9 @@ class TestLayer : public Lynx::Layer
 			LYNX_DEBUG("Test layer attached...");
 		}
 
-		void onUpdate() override
+		void onUpdate(Lynx::Timestep dt) override
 		{
-			cam.onUpdate();
+			cam.onUpdate(dt);
 
 			Lynx::Renderer::beginScene(cam.getCamera());
 			Lynx::Renderer::submit();

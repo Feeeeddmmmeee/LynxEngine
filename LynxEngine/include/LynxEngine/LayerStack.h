@@ -76,8 +76,8 @@ namespace Lynx
 			std::vector<std::unique_ptr<Layer>> layers;
 			std::queue<std::function<void()>> updateQueue;
 
-			void handleEvent(Lynx::Event *event);
-			void updateLayers();
+			void handleEvent(Event *event);
+			void updateLayers(Timestep dt);
 			void processOperations();
 	};
 }

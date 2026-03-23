@@ -12,8 +12,9 @@ namespace Lynx
 	{
 		while(this->isRunning())
 		{
+			Timestep dt = clock.tick();
 			this->window->update();
-			this->layerStack.updateLayers();
+			this->layerStack.updateLayers(dt);
 
 			this->handleEvents();
 		}
