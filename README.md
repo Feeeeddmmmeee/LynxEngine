@@ -10,7 +10,7 @@ A simple (mostly) 2D game engine/framework written in C++ with Vulkan
     - [x] Keyboard events (KeyPressed, KeyReleased, KeyRepeat)
         - [x] Custom keycodes (Compatible with SDL3)
     - [x] Mouse events (MouseButtonPressed, MouseButtonReleased, MouseScroll, MouseMove)
-- [x] User input polling
+- [ ] User input polling
     - [x] SDL implementation
     - [ ] GLFW implementation
 - [x] Timestep and Clock classes for framerate independent motion
