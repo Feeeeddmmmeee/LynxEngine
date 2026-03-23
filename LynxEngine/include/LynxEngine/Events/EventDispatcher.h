@@ -9,21 +9,25 @@ namespace Lynx
 		public:
 			EventDispatcher(Lynx::Event *e) : event(e) {}
 
-			template<typename TEvent>
-			void dispatch(std::function<bool(TEvent*)> callback)
+			template<typename TEvent, typename Func>
+			void dispatch(Func&& callback)
 			{
-				if(this->event->getType() == TEvent::getStaticType())
+				if (this->event->getType() == TEvent::getStaticType())
 				{
-					this->event->handled = callback((TEvent*)this->event);
-				}
-			}
-
-			template<typename TEvent>
-			void dispatch(std::function<bool()> callback)
-			{
-				if(this->event->getType() == TEvent::getStaticType())
-				{
-					this->event->handled = callback();
+					if constexpr (std::is_invocable_v<Func, TEvent*>)
+					{
+						if constexpr (std::is_convertible_v<std::invoke_result_t<Func, TEvent*>, bool>)
+							this->event->handled = callback((TEvent*)this->event);
+						else
+							callback((TEvent*)this->event);
+					}
+					else if constexpr (std::is_invocable_v<Func>)
+					{
+						if constexpr (std::is_convertible_v<std::invoke_result_t<Func>, bool>)
+							this->event->handled = callback();
+						else
+							callback();
+					}
 				}
 			}
 

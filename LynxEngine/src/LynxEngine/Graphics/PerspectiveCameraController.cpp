@@ -57,19 +57,16 @@ namespace Lynx
 				newRot.x -= delta.y;
 
 				this->camera.setRotation(newRot);
-				return 0;
 			});
 
 		dispatcher.dispatch<MouseScrollEvent>([this](MouseScrollEvent *e){
 				float fov = this->camera.getFov();
 				fov -= e->getDeltaY() * zoomSpeed;
 				this->camera.setFov(fov);
-				return 0;
 			});
 
 		dispatcher.dispatch<WindowResizeEvent>([this](WindowResizeEvent *e){
 				this->camera.setDimensions({e->getWidth(), e->getHeight()});
-				return 0;
 			});
 	}
 }

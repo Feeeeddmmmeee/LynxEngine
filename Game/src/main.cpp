@@ -27,7 +27,6 @@ class TestLayer : public Lynx::Layer
 			Lynx::EventDispatcher d(event);
 			d.dispatch<Lynx::KeyPressedEvent>([&](Lynx::KeyEvent *e){
 					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
-					return 0;
 				});
 		}
 	private:

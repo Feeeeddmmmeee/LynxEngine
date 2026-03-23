@@ -32,12 +32,11 @@ namespace Lynx
 			auto event = this->eventQueue.front();
 
 			Lynx::EventDispatcher dispatcher = Lynx::EventDispatcher(event);
-			dispatcher.dispatch<WindowCloseEvent>([this](){ this->close(); return 0; });
-			dispatcher.dispatch<WindowResizeEvent>([this](){ RenderCommand::recreateSwapchain(); return 0; });
+			dispatcher.dispatch<WindowCloseEvent>([this](){ this->close(); });
+			dispatcher.dispatch<WindowResizeEvent>([this](){ RenderCommand::recreateSwapchain(); });
 			dispatcher.dispatch<KeyPressedEvent>([this](KeyPressedEvent *e){
 					if(e->getKey() == Keycode::ESCAPE)
 						window->toggleMouseVisibility();
-					return 0;
 				});
 
 			this->layerStack.handleEvent(event);
