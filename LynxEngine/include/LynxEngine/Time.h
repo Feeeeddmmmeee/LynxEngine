@@ -10,6 +10,7 @@ namespace Lynx
 			operator float() const { return time; }
 			float seconds() const { return time; }
 			float milliseconds() const { return time*1000; }
+			float fps() const { return 1/time; }
 		private:
 			float time;
 	};
