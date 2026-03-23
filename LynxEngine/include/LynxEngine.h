@@ -4,6 +4,7 @@
 #include "LynxEngine/Logging.h"
 #include "LynxEngine/Layer.h"
 #include "LynxEngine/Core.h"
+#include "LynxEngine/Time.h"
 
 // Graphics
 #include "LynxEngine/Graphics/Window.h"
