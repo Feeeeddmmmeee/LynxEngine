@@ -7,11 +7,6 @@ class TestLayer : public Lynx::Layer
 			: app(app)
 		{}
 
-		void onAttach() override
-		{
-			LYNX_DEBUG("Test layer attached...");
-		}
-
 		void onUpdate(Lynx::Timestep dt) override
 		{
 			cam.onUpdate(dt);

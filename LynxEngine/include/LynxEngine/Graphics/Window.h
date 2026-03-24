@@ -37,7 +37,7 @@ namespace Lynx
 
 			const WindowSpec &getWinSpec() { return this->spec; }
 
-			static Window *create(const WindowSpec &spec);
+			static Window *create(const WindowSpec &spec = WindowSpec());
 
 		protected:
 			WindowSpec spec;
