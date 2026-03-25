@@ -3,7 +3,6 @@
 #include "LynxEngine/Events/WindowEvents.h"
 #include "LynxEngine/Events/KeyboardEvents.h"
 #include "LynxEngine/Logging.h"
-#include "LynxEngine/Graphics/Renderer/Renderer.h"
 #include "LynxEngine/Graphics/Renderer/RenderCommand.h"
 
 namespace Lynx
@@ -60,15 +59,12 @@ namespace Lynx
 				this->queueEvent(e);
 		});
 
-		Renderer::init(window.get());
-
 		this->running = 1;
 	}
 
 	Application::~Application()
 	{
 		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
-		Renderer::cleanup();
 
 		while(!this->eventQueue.empty())
 		{
