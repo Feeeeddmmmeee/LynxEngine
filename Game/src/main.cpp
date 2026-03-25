@@ -33,8 +33,10 @@ int main()
 {
 	Lynx::Arc<Lynx::Window> window = Lynx::Window::create({.showMouse = false});
 	Lynx::Application game = Lynx::Application(window);
+
 	Lynx::Renderer::init(window.get());
 	game.pushLayer<TestLayer>(&game);
 	game.run();
+
 	Lynx::Renderer::cleanup();
 }
