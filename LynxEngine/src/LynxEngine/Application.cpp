@@ -50,17 +50,17 @@ namespace Lynx
 		this->running = 0;
 	}
 
-	Application::Application(const WindowSpec &winSpec)
+	Application::Application(Arc<Window> window)
 	{
-		this->name = winSpec.name;
+		this->name = window->getWinSpec().name;
+		this->window = window;
 		LYNX_ENGINE_DEBUG("Initializing {}...", name);
 
-		this->window = Window::create(winSpec);
 		this->window->setEventCallback([this](Lynx::Event *e){
 				this->queueEvent(e);
 		});
 
-		Renderer::init(window);
+		Renderer::init(window.get());
 
 		this->running = 1;
 	}
@@ -70,7 +70,6 @@ namespace Lynx
 		LYNX_ENGINE_DEBUG("Closing {}...", this->name);
 		Renderer::cleanup();
 
-		delete this->window;
 		while(!this->eventQueue.empty())
 		{
 			delete this->eventQueue.front();

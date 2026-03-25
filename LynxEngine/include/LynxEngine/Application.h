@@ -3,13 +3,14 @@
 #include "LynxEngine/LayerStack.h"
 #include "LynxEngine/Graphics/Window.h"
 #include "LynxEngine/Time.h"
+#include "LynxEngine/Core.h"
 
 namespace Lynx
 {
 	class Application
 	{
 		public:
-			Application(const WindowSpec &winSpec = WindowSpec());
+			Application(Arc<Window> window);
 			~Application();
 
 			void run();
@@ -28,7 +29,7 @@ namespace Lynx
 			bool running = 0;
 			std::queue<Lynx::Event*> eventQueue;
 			LayerStack layerStack;
-			Window *window;
+			Arc<Window> window;
 			Clock clock;
 
 			void handleEvents();

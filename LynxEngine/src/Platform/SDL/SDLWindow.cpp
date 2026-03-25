@@ -15,9 +15,9 @@ namespace Lynx
 {
 	static bool initializedSDL = 0;
 
-	Window *Window::create(const WindowSpec &spec)
+	Arc<Window> Window::create(const WindowSpec &spec)
 	{
-		return new SDLWindow(spec);
+		return makeArc((Window*)(new SDLWindow(spec)));
 	}
 
 	glm::vec2 SDLWindow::getFramebufferSize()

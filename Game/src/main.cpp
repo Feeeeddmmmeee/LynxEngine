@@ -31,7 +31,8 @@ class TestLayer : public Lynx::Layer
 
 int main()
 {
-	Lynx::Application game = Lynx::Application({.showMouse = false});
+	Lynx::Arc<Lynx::Window> window = Lynx::Window::create({.showMouse = false});
+	Lynx::Application game = Lynx::Application(window);
 	game.pushLayer<TestLayer>(&game);
 	game.run();
 }

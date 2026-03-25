@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LynxEngine/Core.h"
 #include "LynxEngine/Events/Event.h"
 
 namespace Lynx
@@ -37,7 +38,7 @@ namespace Lynx
 
 			const WindowSpec &getWinSpec() { return this->spec; }
 
-			static Window *create(const WindowSpec &spec = WindowSpec());
+			static Arc<Window> create(const WindowSpec &spec = WindowSpec());
 
 		protected:
 			WindowSpec spec;

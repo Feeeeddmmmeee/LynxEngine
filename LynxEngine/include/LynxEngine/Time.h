@@ -7,10 +7,10 @@ namespace Lynx
 		public:
 			Timestep(float time = 0) : time(time) {}
 
-			operator float() const { return time; }
-			float seconds() const { return time; }
-			float milliseconds() const { return time*1000; }
-			float fps() const { return 1/time; }
+			inline operator float() const { return time; }
+			inline float seconds() const { return time; }
+			inline float milliseconds() const { return time*1000; }
+			inline float fps() const { return 1/time; }
 		private:
 			float time;
 	};
@@ -21,7 +21,7 @@ namespace Lynx
 			Clock()
 				: last(std::chrono::steady_clock::now()) {}
 
-			Timestep tick()
+			inline Timestep tick()
 			{
 				auto now = std::chrono::steady_clock::now();
 				std::chrono::duration<float> delta = now - last;
