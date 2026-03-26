@@ -21,7 +21,8 @@ class TestLayer : public Lynx::Layer
 			cam.onEvent(event);
 			Lynx::EventDispatcher d(event);
 			d.dispatch<Lynx::KeyPressedEvent>([&](Lynx::KeyEvent *e){
-					if(e->getKey() == Lynx::Keycode::Q) this->app->close(); 
+					if(e->getKey() == Lynx::Keycode::Q) 
+						this->app->close(); 
 				});
 		}
 	private:
