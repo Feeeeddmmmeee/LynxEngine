@@ -32,10 +32,9 @@ class TestLayer : public Lynx::Layer
 
 int main()
 {
-	Lynx::Arc<Lynx::Window> window = Lynx::Window::create({.showMouse = false});
-	Lynx::Application game = Lynx::Application(window);
+	Lynx::Application game = Lynx::Application();
 
-	Lynx::Renderer::init(window.get());
+	Lynx::Renderer::init(game.getWindow().get());
 	game.pushLayer<TestLayer>(&game);
 	game.run();
 

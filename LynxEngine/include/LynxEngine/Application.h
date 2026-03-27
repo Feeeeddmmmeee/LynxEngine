@@ -10,7 +10,7 @@ namespace Lynx
 	class Application
 	{
 		public:
-			Application(Arc<Window> window);
+			Application(const WindowSpec &spec = WindowSpec());
 			~Application();
 
 			void run();
@@ -18,6 +18,8 @@ namespace Lynx
 
 			void close();
 			bool isRunning() { return this->running; };
+
+			Arc<Window> getWindow() const { return window; }
 			
 			template<typename TLayer, typename... Args>
 			void pushLayer(Args&&... args)

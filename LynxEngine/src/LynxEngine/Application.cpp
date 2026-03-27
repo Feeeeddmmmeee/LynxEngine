@@ -9,6 +9,7 @@ namespace Lynx
 {
 	void Application::run()
 	{
+		running = 1;
 		while(this->isRunning())
 		{
 			Timestep dt = clock.tick();
@@ -49,17 +50,15 @@ namespace Lynx
 		this->running = 0;
 	}
 
-	Application::Application(Arc<Window> window)
+	Application::Application(const WindowSpec &spec)
 	{
-		this->name = window->getWinSpec().name;
-		this->window = window;
+		this->name = spec.name;
+		this->window = Window::create(spec);
 		LYNX_ENGINE_DEBUG("Initializing {}...", name);
 
 		this->window->setEventCallback([this](Lynx::Event *e){
 				this->queueEvent(e);
 		});
-
-		this->running = 1;
 	}
 
 	Application::~Application()

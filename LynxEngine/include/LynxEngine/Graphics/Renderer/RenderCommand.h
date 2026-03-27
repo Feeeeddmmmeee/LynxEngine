@@ -2,6 +2,7 @@
 
 #include "LynxEngine/Graphics/Renderer/RendererAPI.h"
 #include "LynxEngine/Core.h"
+#include "LynxEngine/Logging.h"
 
 namespace Lynx
 {
@@ -10,29 +11,26 @@ namespace Lynx
 		public:
 			inline static void init(Window *window)
 			{
-				rendererAPI->init(window);
+				getAPI()->init(window);
 			}
 
 			inline static void draw()
 			{
-				rendererAPI->draw();
+				getAPI()->draw();
 			}
 
 			inline static void setCamera(Camera &cam)
 			{
-				rendererAPI->setCamera(cam);
-			}
-
-			inline static void cleanup()
-			{
-				rendererAPI->cleanup();
+				getAPI()->setCamera(cam);
 			}
 
 			inline static void recreateSwapchain()
 			{
-				rendererAPI->recreateSwapchain();
+				getAPI()->recreateSwapchain();
 			}
+
+			static void cleanup();
+			static RendererAPI *getAPI();
 		private:
-			static RendererAPI *rendererAPI;
 	};
 }

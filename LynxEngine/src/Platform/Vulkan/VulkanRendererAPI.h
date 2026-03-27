@@ -125,11 +125,12 @@ namespace Lynx
 				{
 					vk::PhysicalDeviceProperties props = pDevice.getProperties();
 					vk::SampleCountFlags counts = props.limits.framebufferColorSampleCounts & props.limits.framebufferDepthSampleCounts;
+					LYNX_ENGINE_DEBUG("Available MSAA Sample counts: {}", vk::to_string(counts));
 
-					if (counts & vk::SampleCountFlagBits::e64) { return vk::SampleCountFlagBits::e64; }
-					if (counts & vk::SampleCountFlagBits::e32) { return vk::SampleCountFlagBits::e32; }
-					if (counts & vk::SampleCountFlagBits::e16) { return vk::SampleCountFlagBits::e16; }
-					if (counts & vk::SampleCountFlagBits::e8) { return vk::SampleCountFlagBits::e8; }
+					// if (counts & vk::SampleCountFlagBits::e64) { return vk::SampleCountFlagBits::e64; }
+					// if (counts & vk::SampleCountFlagBits::e32) { return vk::SampleCountFlagBits::e32; }
+					// if (counts & vk::SampleCountFlagBits::e16) { return vk::SampleCountFlagBits::e16; }
+					// if (counts & vk::SampleCountFlagBits::e8) { return vk::SampleCountFlagBits::e8; }
 					if (counts & vk::SampleCountFlagBits::e4) { return vk::SampleCountFlagBits::e4; }
 					if (counts & vk::SampleCountFlagBits::e2) { return vk::SampleCountFlagBits::e2; }
 
@@ -267,10 +268,10 @@ namespace Lynx
 				objects[0].pos= {0, 0, 0};
 				objects[0].scale = {.5,.5,.5};
 				loadModel(objects[0].model, "LynxEngine/models/viking_room.obj");
-				//
-				// loadModel(objects[1].model, "models/sponza.obj", true, true, "textures/sponza/");
-				// objects[1].scale = {0.2,0.2,0.2};
-				//
+
+				loadModel(objects[1].model, "LynxEngine/models/sponza.obj", true, true, "LynxEngine/textures/sponza/");
+				objects[1].scale = {0.2,0.2,0.2};
+
 				// objects[2].pos = {0,5,0};
 				// objects[2].scale = {.007,.007,.007};
 				// loadModel(objects[2].model, "models/teapot.obj", true, true);
@@ -315,7 +316,7 @@ namespace Lynx
 							}));
 
 				mesh.material.texture = std::make_shared<Texture>(device, pDevice);
-				createTextureImage(mesh.material.texture, "textures/default.png");
+				createTextureImage(mesh.material.texture, "LynxEngine/textures/default.png");
 				mesh.material.texture->createImageView();
 				mesh.material.texture->createSampler();
 			}
