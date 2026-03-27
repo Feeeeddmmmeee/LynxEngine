@@ -22,6 +22,8 @@ A simple (mostly) 2D game engine/framework written in C++ with Vulkan
     - [x] Simple perspective camera controller with WASD movement + mouse rotation + scroll zoom (fov) + speed boost when holding shift
     - [ ] Orthographic camera
     - [ ] Rendering (Loosely based on my [Vulkan learning repo](https://github.com/Feeeeddmmmeee/VulkanTesting))
+        - [ ] Full renderer abstraction
+        - [ ] full Vulkan wrapper
 - [ ]  Resource management
 - [ ]  ECS
 - [ ]  Audio support
